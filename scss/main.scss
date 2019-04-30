@@ -1,0 +1,12 @@
+@import "reset.scss";
+@import "variables.scss";
+@import "buttons.scss";
+@import "fonts.scss";
+@import "overall.scss";
+@import "start.scss";
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+    user-select: none;
+}

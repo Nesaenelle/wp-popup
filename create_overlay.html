@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Popup plugin</title>
+    <link rel="stylesheet" href="public/main.css" />
+    <!-- Fix for iOS Safari zooming bug -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wp-popup__container wp-popup__create-overlay">
+       <h3 class="wp-popup__title">Create Overlay POP-up</h3>
+        <div class="wp-popup__progressbar">
+            <div class="wp-popup__progressbar--label active">Select template</div>
+            <div class="wp-popup__progressbar--label">Edit template</div>
+            <div class="wp-popup__progressbar--label">Overlay settings</div>
+            <div class="wp-popup__progressbar--label">Done!</div>
+            <div class="wp-popup__progressbar__line">
+                <div class="wp-popup__progressbar__line--point"></div>
+                <div class="wp-popup__progressbar__line--point"></div>
+                <div class="wp-popup__progressbar__line--point"></div>
+                <div class="wp-popup__progressbar__line--point"></div>
+            </div>
+        </div>
+        <div class="wp-popup__overlay-name">
+            <div class="wp-popup__overlay-name--name">Overlay’s name</div>
+            <input type="text" value="Overlay_test_one_1223">
+            <div class="wp-popup__overlay-name--info">create a name in 70 characters, by default the name will be created with the date and time</div>
+        </div>
+
+        <h3 class="wp-popup__title">Choice template</h3>
+        <div class="wp-popup__annotataion">
+            Choose any pop-up template for further editing
+        </div>
+        <div class="wp-popup__content">
+            <div class="wp-popup__overlays-list">
+                <div class="wp-popup__overlays-list__col">
+                        <div class="wp-popup__overlays-list__item">
+                            <div class="wp-popup__overlays-list__item--title">1000*500 #1</div>
+                            <img src="" alt="">
+                        </div>
+                        <div class="wp-popup__overlays-list__item">
+                            <div class="wp-popup__overlays-list__item--title">1000*500 #1</div>
+                            <img src="" alt="">
+                        </div>
+                </div>
+                <div class="wp-popup__overlays-list__col">
+                        <div class="wp-popup__overlays-list__item">
+                            <div class="wp-popup__overlays-list__item--title">1000*500 #1</div>
+                            <img src="" alt="">
+                        </div>
+                        <div class="wp-popup__overlays-list__item">
+                            <div class="wp-popup__overlays-list__item--title">1000*500 #1</div>
+                            <img src="" alt="">
+                        </div>
+                </div>
+                <div class="wp-popup__overlays-list__col">
+                        <div class="wp-popup__overlays-list__item">
+                            <div class="wp-popup__overlays-list__item--title">1000*500 #1</div>
+                            <img src="" alt="">
+                        </div>
+                        <div class="wp-popup__overlays-list__item">
+                            <div class="wp-popup__overlays-list__item--title">1000*500 #1</div>
+                            <img src="" alt="">
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="wp-popup__buttons">
+            <button class="wp-popup__btn wp-popup__btn--grey">Next step</button>
+        </div>
+    </div>
+    <script src="src/jquery-3.4.0.min.js"></script>
+    <script src="src/main.js"></script>
+</body>
+
+</html>
