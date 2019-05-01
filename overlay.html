@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Popup plugin</title>
+    <link rel="stylesheet" href="public/main.css" />
+    <!-- Fix for iOS Safari zooming bug -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wp-popup__container wp-popup__create-overlay" id="overlay-app" v-cloak>
+
+        <h3 class="wp-popup__title">
+            <span v-if="step < 5">Create Overlay POP-up <span v-if="step >= 2">/{{overlayName}}</span> </span>
+            <span v-if="step === 5">Overlay <span>“{{overlayName}}”</span> created</span>
+        </h3>
+        
+        <div class="wp-popup__progressbar" :data-step="step">
+            <div class="wp-popup__progressbar--label">Select template</div>
+            <div class="wp-popup__progressbar--label">Edit template</div>
+            <div class="wp-popup__progressbar--label">Overlay settings</div>
+            <div class="wp-popup__progressbar--label">Done!</div>
+            <div class="wp-popup__progressbar__line">
+                <div class="wp-popup__progressbar__line_point">
+                    <div class="wp-popup__progressbar__line_point--circle"></div>
+                </div>
+                <div class="wp-popup__progressbar__line_point">
+                    <div class="wp-popup__progressbar__line_point--circle"></div>
+                </div>
+                <div class="wp-popup__progressbar__line_point">
+                    <div class="wp-popup__progressbar__line_point--circle"></div>
+                </div>
+                <div class="wp-popup__progressbar__line_point">
+                    <div class="wp-popup__progressbar__line_point--circle"></div>
+                </div>
+                <div class="wp-popup__progressbar__line--filled"></div>
+            </div>
+        </div>
+        <div class="wp-popup__overlay-name" v-if="step === 0 || step === 1">
+            <div class="wp-popup__overlay-name--name">Overlay’s name</div>
+            <input type="text" value="" v-model="overlayName">
+            <div class="wp-popup__overlay-name--info">create a name in 70 characters, by default the name will be created with the date and time</div>
+        </div>
+        <h3 class="wp-popup__subtitle">
+            <span v-if="step === 0">Choice template</span>
+            <span v-if="step === 1">Select template</span>
+            <span v-if="step === 2">Edit overlay template</span>
+        </h3>
+        <div class="wp-popup__annotataion">
+            Choose any pop-up template for further editing
+        </div>
+
+        <div class="wp-popup__content" v-if="step === 0 || step === 1">
+            <div class="wp-popup__overlays-list">
+                <div class="wp-popup__overlays-list__col" v-for="overlay in overlays">
+                    <div class="wp-popup__overlays-list__item" 
+                         v-for="item in overlay" @click="selectOverlay(item)" :class="{selected: item === selectedOverlay}">
+                        <div class="wp-popup__overlays-list__item--title">{{item.size}} #{{item.id}}</div>
+                        <div class="wp-popup__overlays-list__item--image">
+                            <img src="img/" alt="">
+                            <div class="wp-popup__overlays-list__item--selected" v-if="item === selectedOverlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11">
+                                     <path fill="#FFF" fill-rule="evenodd" d="M14 2.2L5.386 11l-.002-.001V11L0 5.5l2.153-2.2 3.231 3.3L11.847 0z"/>
+                                </svg>Selected
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wp-popup__content" v-if="step === 2 || step === 3">
+            <div class="wp-popup__overlays-list">
+                 EDIT OVERLAY
+            </div>
+        </div>
+
+        <div class="wp-popup__content" v-if="step === 4">
+            <div class="wp-popup__overlays-list">
+                OVERLAY SETTINGS
+            </div>
+        </div>
+
+        <div class="wp-popup__content" v-if="step === 5">
+            <div class="wp-popup__overlays-list">
+                DONE
+            </div>
+        </div>
+
+
+        <div class="wp-popup__buttons">
+            <button class="wp-popup__btn wp-popup__btn--back" @click="back()" v-if="step > 0">Back</button>
+            
+            <button class="wp-popup__btn" @click="selectedOverlay && nextStep()" v-if="step < 5"
+            :class="{'wp-popup__btn--grey': !selectedOverlay, 'wp-popup__btn--blue': selectedOverlay}">Next step</button>
+
+            <button class="wp-popup__btn wp-popup__btn--blue" @click="done()" v-if="step === 5"><a href="my_overlays.html">Done</a></button>
+        </div>
+    </div>
+    <!-- <script src="src/jquery-3.4.0.min.js"></script> -->
+    <script>
+    var OVERLAY_DATA = [
+        [{ size: '1000*500', id: 1 }, { size: '1000*500', id: 2 }],
+        [{ size: '960*400', id: 1 }, { size: '960*400', id: 2 }],
+        [{ size: '1120*600', id: 1 }, { size: '1120*600', id: 2 }],
+    ];
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="src/overlay.js"></script>
+</body>
+
+</html>
