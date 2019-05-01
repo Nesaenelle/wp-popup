@@ -34,29 +34,52 @@
     var app = new Vue({
         el: '#overlay-app',
         data: {
-           step: 0,
-           overlays: OVERLAY_DATA,
-           overlayName: '',
-           selectedOverlay: null
+            step: 0,
+            overlays: OVERLAY_DATA,
+            overlayName: '',
+            selectedOverlay: null,
+            selectOverlayError: false,
+            overlayNameError: false
         },
         methods: {
-        	selectOverlay: function(overlay) {
-        		this.selectedOverlay = overlay;
-        		this.step = 1;
-        	},
-        	back: function() {
-        		this.step--;
-        		if(this.step === 0) {
-        			this.selectedOverlay = null;
-        		}
-        	},
-        	nextStep: function() {
-        		// alert();
-        		this.step++;
-        	},
-        	done: function() {
+            selectOverlay: function(overlay) {
+                this.selectedOverlay = overlay;
+                this.step = 1;
+                this.selectOverlayError = false;
+            },
+            back: function() {
+                this.step--;
+                if (this.step === 0) {
+                    this.selectedOverlay = null;
+                }
+            },
+            nextStep: function() {
+                if (this.step === 0 || this.step === 1) {
+                    if (this.selectedOverlay) {
+                    	if(this.overlayName) {
+                    		this.step++;	
+                    		this.overlayNameError = false;
+                    	} else {
+                    		this.overlayNameError = true;
+                    		this.$refs['overlayName'].focus();
+                    	}
+                    	this.selectOverlayError = false;
+                    } else {
+                        this.selectOverlayError = true;
+                    }
+                } else if (this.step === 2) {
+                    this.step++;
+                } else if (this.step === 3) {
+                	this.step++;
+                } else if (this.step === 4) {
+                	this.step++;
+                } else if (this.step === 5) {
+                	this.step++;
+                }
+            },
+            done: function() {
 
-        	}
+            }
         }
     })
 })();

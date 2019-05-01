@@ -13,58 +13,63 @@
 
 <body>
     <div class="wp-popup__container wp-popup__create-overlay" id="overlay-app" v-cloak>
-
-        <h3 class="wp-popup__title">
-            <span v-if="step < 5">Create Overlay POP-up <span v-if="step >= 2">/{{overlayName}}</span> </span>
-            <span v-if="step === 5">Overlay <span>“{{overlayName}}”</span> created</span>
-        </h3>
-        
-        <div class="wp-popup__progressbar" :data-step="step">
-            <div class="wp-popup__progressbar--label">Select template</div>
-            <div class="wp-popup__progressbar--label">Edit template</div>
-            <div class="wp-popup__progressbar--label">Overlay settings</div>
-            <div class="wp-popup__progressbar--label">Done!</div>
-            <div class="wp-popup__progressbar__line">
-                <div class="wp-popup__progressbar__line_point">
-                    <div class="wp-popup__progressbar__line_point--circle"></div>
+        <div class="wp-popup__notification wp-popup__notification--error" v-if="selectOverlayError && (step === 0 || step === 1)">
+            Selected any overlay for your future advertising campain. Default will create the first overlay from the list
+        </div>
+<!--         <div class="wp-popup__notification wp-popup__notification--success" v-if="step === 0 || step === 1">
+            click on overlay and change content (text and images)
+        </div> -->
+        <div class="wp-popup__top-panel">
+            <h3 class="wp-popup__title">
+                <span v-if="step < 5">Create Overlay POP-up <span v-if="step >= 2" class="wp-popup__title--project-name">/{{overlayName}}</span> </span>
+                <span v-if="step === 5">Overlay <span>“{{overlayName}}”</span> created</span>
+            </h3>
+            <div class="wp-popup__progressbar" :data-step="step">
+                <div class="wp-popup__progressbar--label">Select template</div>
+                <div class="wp-popup__progressbar--label">Edit template</div>
+                <div class="wp-popup__progressbar--label">Overlay settings</div>
+                <div class="wp-popup__progressbar--label">Done!</div>
+                <div class="wp-popup__progressbar__line">
+                    <div class="wp-popup__progressbar__line_point">
+                        <div class="wp-popup__progressbar__line_point--circle"></div>
+                    </div>
+                    <div class="wp-popup__progressbar__line_point">
+                        <div class="wp-popup__progressbar__line_point--circle"></div>
+                    </div>
+                    <div class="wp-popup__progressbar__line_point">
+                        <div class="wp-popup__progressbar__line_point--circle"></div>
+                    </div>
+                    <div class="wp-popup__progressbar__line_point">
+                        <div class="wp-popup__progressbar__line_point--circle"></div>
+                    </div>
+                    <div class="wp-popup__progressbar__line--filled"></div>
                 </div>
-                <div class="wp-popup__progressbar__line_point">
-                    <div class="wp-popup__progressbar__line_point--circle"></div>
-                </div>
-                <div class="wp-popup__progressbar__line_point">
-                    <div class="wp-popup__progressbar__line_point--circle"></div>
-                </div>
-                <div class="wp-popup__progressbar__line_point">
-                    <div class="wp-popup__progressbar__line_point--circle"></div>
-                </div>
-                <div class="wp-popup__progressbar__line--filled"></div>
             </div>
         </div>
         <div class="wp-popup__overlay-name" v-if="step === 0 || step === 1">
             <div class="wp-popup__overlay-name--name">Overlay’s name</div>
-            <input type="text" value="" v-model="overlayName">
+            <input type="text" placeholder="Overlay’s name" ref="overlayName" v-model="overlayName" :class="{'wp-popup__input-error': overlayNameError}">
             <div class="wp-popup__overlay-name--info">create a name in 70 characters, by default the name will be created with the date and time</div>
         </div>
         <h3 class="wp-popup__subtitle">
             <span v-if="step === 0">Choice template</span>
             <span v-if="step === 1">Select template</span>
-            <span v-if="step === 2">Edit overlay template</span>
+            <span v-if="step === 2 || step === 3">Edit overlay template</span>
         </h3>
         <div class="wp-popup__annotataion">
-            Choose any pop-up template for further editing
+            <span v-if="step < 2">Choose any pop-up template for further editing</span>
+            <span v-if="step === 2 || step === 3">Click text on banner and change content and color (if you need)</span>
         </div>
-
-        <div class="wp-popup__content" v-if="step === 0 || step === 1">
+        <div class="wp-popup__content" v-if="step === 0 || step === 1"  :class="{'wp-popup__content--error': selectOverlayError}">
             <div class="wp-popup__overlays-list">
                 <div class="wp-popup__overlays-list__col" v-for="overlay in overlays">
-                    <div class="wp-popup__overlays-list__item" 
-                         v-for="item in overlay" @click="selectOverlay(item)" :class="{selected: item === selectedOverlay}">
+                    <div class="wp-popup__overlays-list__item" v-for="item in overlay" @click="selectOverlay(item)" :class="{selected: item === selectedOverlay}">
                         <div class="wp-popup__overlays-list__item--title">{{item.size}} #{{item.id}}</div>
                         <div class="wp-popup__overlays-list__item--image">
                             <img src="img/" alt="">
                             <div class="wp-popup__overlays-list__item--selected" v-if="item === selectedOverlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11">
-                                     <path fill="#FFF" fill-rule="evenodd" d="M14 2.2L5.386 11l-.002-.001V11L0 5.5l2.153-2.2 3.231 3.3L11.847 0z"/>
+                                    <path fill="#FFF" fill-rule="evenodd" d="M14 2.2L5.386 11l-.002-.001V11L0 5.5l2.153-2.2 3.231 3.3L11.847 0z" />
                                 </svg>Selected
                             </div>
                         </div>
@@ -72,32 +77,69 @@
                 </div>
             </div>
         </div>
-
         <div class="wp-popup__content" v-if="step === 2 || step === 3">
             <div class="wp-popup__overlays-list">
-                 EDIT OVERLAY
+                EDIT OVERLAY
             </div>
         </div>
-
-        <div class="wp-popup__content" v-if="step === 4">
-            <div class="wp-popup__overlays-list">
-                OVERLAY SETTINGS
+        <div class="wp-popup__overlay-settings" v-if="step === 4">
+            <div class="wp-popup__overlay-settings_section">Enable auto overlay</div>
+            <div class="wp-popup__overlay-settings_content">
+                <div class="wp-popup__overlay-settings_content--col">
+                    <label class="wp-popup__checkbox">
+                        <input type="checkbox">
+                        <div class="wp-popup__checkbox--icon"></div>
+                        <div class="wp-popup__checkbox--text">Show now</div>
+                    </label>
+                    <div>Overlay is shown immediately after the page or post is loaded</div>
+                </div>
+               <div class="wp-popup__overlay-settings_content--col">
+                    <label class="wp-popup__checkbox">
+                        <input type="checkbox">
+                        <div class="wp-popup__checkbox--icon"></div>
+                        <div class="wp-popup__checkbox--text">Delay (seconds):</div>
+                    </label>
+                </div>
+                <div class="wp-popup__overlay-settings_content--col">
+                    <label class="wp-popup__checkbox">
+                        <input type="checkbox">
+                        <div class="wp-popup__checkbox--icon"></div>
+                        <div class="wp-popup__checkbox--text">Show after scroll(%):</div>
+                    </label>
+                </div>
             </div>
+            <div class="wp-popup__overlay-settings_section">Schedule <i>Enter time&data to automatically start and stop overlay work</i></div>
+            <div class="wp-popup__overlay-settings_content">
+                <div class="wp-popup__overlay-settings_content--col">
+                    <label class="wp-popup__checkbox">
+                        <input type="checkbox">
+                        <div class="wp-popup__checkbox--icon"></div>
+                        <div class="wp-popup__checkbox--text">Start</div>
+                    </label>
+                    <input type="text" placeholder="dd mm yyyy">
+                </div>
+                <div class="wp-popup__overlay-settings_content--col">
+                    <label class="wp-popup__checkbox">
+                        <input type="checkbox">
+                        <div class="wp-popup__checkbox--icon"></div>
+                        <div class="wp-popup__checkbox--text">Stop</div>
+                    </label>
+                    <input type="text" placeholder="dd mm yyyy">
+                </div>
+            </div>
+            <div class="wp-popup__overlay-settings_section">Smart filter <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.</i></div>
         </div>
-
         <div class="wp-popup__content" v-if="step === 5">
             <div class="wp-popup__overlays-list">
                 DONE
             </div>
         </div>
-
-
         <div class="wp-popup__buttons">
             <button class="wp-popup__btn wp-popup__btn--back" @click="back()" v-if="step > 0">Back</button>
-            
-            <button class="wp-popup__btn" @click="selectedOverlay && nextStep()" v-if="step < 5"
-            :class="{'wp-popup__btn--grey': !selectedOverlay, 'wp-popup__btn--blue': selectedOverlay}">Next step</button>
-
+            <button class="wp-popup__btn" @click="nextStep()" v-if="step < 5" 
+            :class="{'wp-popup__btn--grey': !selectedOverlay || !overlayName, 'wp-popup__btn--blue': selectedOverlay && overlayName}">
+                Next step
+            </button>
             <button class="wp-popup__btn wp-popup__btn--blue" @click="done()" v-if="step === 5"><a href="my_overlays.html">Done</a></button>
         </div>
     </div>
