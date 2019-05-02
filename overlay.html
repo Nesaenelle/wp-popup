@@ -179,10 +179,36 @@
                     <input type="text" placeholder="dd mm yyyy" class="wp-popup__input">
                 </div>
             </div>
-            <div class="wp-popup__overlay-settings_section">Smart filter <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.</i></div>
+            <div class="wp-popup__overlay-settings_section">
+                Smart filter <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.</i>
+            </div>
+
+
             <div class="wp-popup__overlay-settings_content">
-                <div></div>
-                <div>Added rules for this overlay</div>
+                <form class="wp-popup__smart-filter" @submit.prevent="addRule()">
+                    <div class="wp-popup__dropdown" v-dropdown>
+                         <div class="wp-popup__dropdown--label">Subject</div>
+                         <div class="wp-popup__dropdown__value">Category</div>
+                         <div class="wp-popup__dropdown__list">
+                             <div class="wp-popup__dropdown__list--item" v-for="subj in subjects">{{subj}}</div>
+                         </div>
+                    </div>
+                    <div class="wp-popup__dropdown" v-dropdown>
+                        <div class="wp-popup__dropdown--label">Condition</div>
+                        <div class="wp-popup__dropdown__value">does not contain</div>
+                        <div class="wp-popup__dropdown__list">
+                            <div class="wp-popup__dropdown__list--item" v-for="condition in conditions">{{condition}}</div>
+                        </div>
+                    </div>
+                    <div class="wp-popup__smart-filter__content">
+                        <div class="wp-popup__smart-filter__content--title">Сontent</div>
+                        <input type="text" required v-model="ruleModel.content">
+                        <div class="wp-popup__smart-filter__content--annotation">Separate each word or combination of words with a comma</div>
+                    </div>
+                    <button class="wp-popup__btn wp-popup__btn--blue" type="submit">Add rule</button>
+                </form>
+
+                <div class="wp-popup__table--title">Added rules for this overlay</div>
                 <div class="wp-popup__table wp-popup__table_col--6">
                     <div class="wp-popup__table_head">
                         <div class="wp-popup__table_head--row">
@@ -254,6 +280,9 @@
         { title: 'Rule #2', subject: 'Category', condition: 'contains', content: 'http://example.com/corgi', amount: 'displayed on 2444 page/post' },
         { title: 'Rule #3', subject: 'Tag', condition: 'does not contain', content: 'http://example.com/corgi', amount: 'displayed on 335 page/post' }
     ];
+
+    var SUBJECT_DATA = ["Page", "Category", "Tag"];
+    var CONDITION_DATA = ["exact much", "contains", "does not contain"];
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>

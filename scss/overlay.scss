@@ -463,6 +463,7 @@
         justify-content: center;
         padding: 87px 20px 104px 20px;
         margin-top: 5px;
+
         &__desktop,
         &__mobile {
 
@@ -490,11 +491,13 @@
             &_text {
                 position: absolute;
                 cursor: pointer;
+
                 &.filled {
                     &:after {
                         content: none;
                     }
                 }
+
                 &.inactive {
                     cursor: auto;
                 }
@@ -521,7 +524,8 @@
                     left: 10px;
                     max-width: 45%;
 
-                    .wp-popup__overlay-edit__desktop_text--field, .wp-popup__overlay-edit__mobile_text--field {
+                    .wp-popup__overlay-edit__desktop_text--field,
+                    .wp-popup__overlay-edit__mobile_text--field {
                         overflow: hidden;
                         background: red;
                         font-weight: 600;
@@ -541,7 +545,8 @@
                     height: 100px;
                     padding: 4px 10px;
 
-                     .wp-popup__overlay-edit__desktop_text--field, .wp-popup__overlay-edit__mobile_text--field {
+                    .wp-popup__overlay-edit__desktop_text--field,
+                    .wp-popup__overlay-edit__mobile_text--field {
                         font-weight: 600;
                         font-size: 32px;
                         line-height: 1.1em;
@@ -558,7 +563,8 @@
                     padding: 6px 20px;
                     box-shadow: 0 0 5px -3px #000;
 
-                     .wp-popup__overlay-edit__desktop_text--field, .wp-popup__overlay-edit__mobile_text--field {
+                    .wp-popup__overlay-edit__desktop_text--field,
+                    .wp-popup__overlay-edit__mobile_text--field {
                         font-size: 14px;
                         overflow: hidden;
                     }
@@ -572,7 +578,8 @@
                     height: 78px;
                     padding: 2px 5px;
 
-                     .wp-popup__overlay-edit__desktop_text--field, .wp-popup__overlay-edit__mobile_text--field {
+                    .wp-popup__overlay-edit__desktop_text--field,
+                    .wp-popup__overlay-edit__mobile_text--field {
                         font-size: 28px;
                         overflow: hidden;
                     }
@@ -635,31 +642,37 @@
             }
 
             &_text {
+
                 // display: none;
                 &--1 {
                     top: 14px;
                     left: 5px;
+
                     .wp-popup__overlay-edit__mobile_text--field {
                         padding: 5px;
                         font-size: 14px;
                     }
                 }
+
                 &--2 {
                     top: 120px;
                     width: 100%;
                     right: auto;
+
                     .wp-popup__overlay-edit__mobile_text--field {
                         padding: 5px;
                         line-height: 0.9em;
                         font-size: 26px;
                     }
                 }
+
                 &--3 {
                     top: auto;
                     bottom: 0;
                     left: 0;
                     width: 100%;
                     height: 100px;
+
                     .wp-popup__overlay-edit__mobile_text--field {
                         font-size: 12px;
                         text-align: center;
@@ -717,6 +730,44 @@
                 display: flex;
                 align-items: center;
                 height: 26px;
+            }
+        }
+    }
+
+    &__smart-filter {
+        border-radius: 3px;
+        background-color: #f9f9f9;
+        padding: 10px 50px 26px 50px;
+
+        &__content {
+            display: inline-block;
+            // flex-wrap: wrap;
+            width: 350px;
+            margin-right: 10px;
+
+            input {
+                width: 100%;
+                height: 29px;
+                border-radius: 3px;
+                border: solid 1px #dfdfdf;
+                background-color: #ffffff;
+                padding: 0 10px;
+                font-family: Helvetica;
+                color: #393939;
+            }
+
+            &--title {
+                width: 100%;
+                font-family: Helvetica;
+                font-size: 12px;
+            }
+
+            &--annotation {
+                font-size: 12px;
+                font-style: italic;
+                line-height: 1.46;
+                color: #898989;
+                position: absolute;
             }
         }
     }

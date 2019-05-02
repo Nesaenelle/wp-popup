@@ -64,13 +64,14 @@
         padding: 15px 11px 15px 10px;
         border: solid 1px #979797;
         width: 100%;
-        
+
         &--empty {
             background: none;
             padding: 0;
             border: none;
             margin-top: 8px;
         }
+
         &--error {
             box-shadow: inset 0 0 3px 3px #ff0000;
         }
@@ -208,6 +209,7 @@
         cursor: pointer;
         transition: 0.1s;
         font-weight: 300;
+
         &--light-blue {
             border: 1px solid #1075a0;
             background: rgba(54, 163, 202, 0.18);
@@ -277,7 +279,7 @@
         align-items: center;
         margin-right: 20px;
         cursor: pointer;
-        min-width: 55px;
+        min-width: 57px;
 
         input {
             display: none;
@@ -305,6 +307,7 @@
     &__number-input {
         position: relative;
         margin-right: 15px;
+
         input {
             height: 24px;
             width: 55px;
@@ -315,20 +318,23 @@
             font-family: Helvetica;
             font-size: 12px;
         }
+
         &--up {
             cursor: pointer;
             position: absolute;
             right: 5px;
             top: 7px;
-            width: 0; 
-            height: 0; 
+            width: 0;
+            height: 0;
             border-left: 4px solid transparent;
             border-right: 4px solid transparent;
-            
+
             border-bottom: 4px solid #cacaca;
+
             &:hover {
                 transform: scale(1.3);
             }
+
             &:after {
                 content: '';
                 pointer-events: auto;
@@ -339,20 +345,23 @@
                 top: -5px;
             }
         }
+
         &--down {
             cursor: pointer;
             position: absolute;
             right: 5px;
             top: 15px;
-            width: 0; 
-            height: 0; 
+            width: 0;
+            height: 0;
             border-left: 4px solid transparent;
             border-right: 4px solid transparent;
-            
+
             border-top: 4px solid #cacaca;
+
             &:hover {
                 transform: scale(1.3);
             }
+
             &:after {
                 content: '';
                 pointer-events: auto;
@@ -361,6 +370,62 @@
                 position: absolute;
                 left: -5px;
                 top: -5px;
+            }
+        }
+    }
+
+    &__dropdown {
+        width: 121px;
+        display: inline-block;
+        margin-right: 10px;
+        position: relative;
+
+        &--label {
+            // background-color: #393939;
+            font-family: Helvetica;
+            font-size: 12px;
+        }
+
+        &__value {
+            cursor: pointer;
+            height: 29px;
+            border-radius: 3px;
+            border: solid 1px #dfdfdf;
+            background-color: #ffffff;
+            color: #393939;
+            display: flex;
+            align-items: center;
+            // background-color: #393939;
+            font-family: Helvetica;
+            font-size: 12px;
+            padding: 0 5px;
+        }
+
+        &__list {
+            position: absolute;
+            background: #fff;
+            width: 100%;
+            // box-shadow: 0 0 5px -1px #000;
+            border: 1px solid #dfdfdf;
+            border-radius: 0px 0px 3px 3px;
+            margin-top: -1px;
+            opacity: 0;
+            visibility: hidden;
+
+            &.opened {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            &--item {
+                font-family: Helvetica;
+                font-size: 12px;
+                padding: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background: #dfdfdf;
+                }
             }
         }
     }
@@ -376,6 +441,12 @@
 
         .wp-popup__link {
             font-size: 13px;
+        }
+
+        &--title {
+            font-size: 14px;
+            font-weight: 600;
+            color: $c-brownish-grey;
         }
 
         &_col--4 {
@@ -418,6 +489,7 @@
                 font-size: 13px;
                 font-weight: 400;
                 height: 32px;
+
                 &:nth-child(1) {
                     width: 100px;
                 }
@@ -427,7 +499,7 @@
                 }
 
                 &:nth-child(3) {
-                   width: 130px;
+                    width: 130px;
                 }
 
                 &:nth-child(4) {
@@ -443,9 +515,10 @@
                     text-align: center;
                     text-decoration: underline;
                     cursor: pointer;
-                     a {
+
+                    a {
                         margin: auto;
-                     }
+                    }
                 }
             }
 

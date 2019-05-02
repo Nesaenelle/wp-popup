@@ -1,11 +1,65 @@
 (function() {
 
+    Vue.directive('number', {
+        inserted: function(el) {
+            var input = el.querySelector('input');
+            var initValue = input.getAttribute('init-value');
+            var maxValue = parseInt(input.getAttribute('max-value'));
+            var prefix = input.getAttribute('prefix') || '';
+            var upArrow = document.createElement('div');
+            var downArrow = document.createElement('div');
+
+            upArrow.classList.add('wp-popup__number-input--up');
+            downArrow.classList.add('wp-popup__number-input--down');
+
+            input.setAttribute('readonly', true);
+            input.value = initValue + prefix;
+
+            el.appendChild(upArrow);
+            el.appendChild(downArrow);
+
+            upArrow.addEventListener('click', function() {
+                var curValue = parseInt(input.value)
+                if (curValue < maxValue) {
+                    input.value = parseInt(input.value) + 1 + prefix;
+                }
+
+            }, false);
+            downArrow.addEventListener('click', function() {
+                var curValue = parseInt(input.value)
+                if (curValue > 0) {
+                    input.value = parseInt(input.value) - 1 + prefix;
+                }
+            }, false);
+        }
+    });
+
+    Vue.directive('dropdown', {
+        inserted: function(el) {
+            var valueEl = el.querySelector('.wp-popup__dropdown__value');
+            var listEl = el.querySelector('.wp-popup__dropdown__list');
+
+            valueEl.addEventListener('click', function(e) {
+                e.stopPropagation();
+                listEl.classList.add('opened');
+            }, false);
+
+            window.addEventListener('click', function(e) {
+                if (!listEl.contains(e.target)) {
+                    listEl.classList.remove('opened');
+                }
+            }, false);
+        }
+    });
+
     var app = new Vue({
         el: '#overlay-app',
         data: {
-            step: 0,
+            step: 4,
             overlays: OVERLAY_DATA,
             rules: RULES_DATA,
+            subjects: SUBJECT_DATA,
+            conditions: CONDITION_DATA,
             overlayName: '',
             overlayText: {
                 text1: 'example',
@@ -13,6 +67,7 @@
                 text3: 'example',
                 text4: ''
             },
+            ruleModel: {content: ''},
             selectedOverlay: null,
             selectOverlayError: false,
             overlayNameError: false,
@@ -114,6 +169,10 @@
             removeRule: function(rule, index) {
                 this.rules.splice(index, 1);
             },
+            addRule: function() {
+                this.rules.push({condition: '', content: this.ruleModel.content});
+                this.ruleModel = {content: ''};
+            },
             clearAllRules: function() {
                 this.rules = [];
             },
@@ -123,44 +182,4 @@
         }
     });
 
-
-    Vue.directive('number', {
-        inserted: function(el) {
-            var input = el.querySelector('input');
-            var initValue = input.getAttribute('init-value');
-            var maxValue = parseInt(input.getAttribute('max-value'));
-            var prefix = input.getAttribute('prefix') || '';
-            var upArrow = document.createElement('div');
-            var downArrow = document.createElement('div');
-
-            upArrow.classList.add('wp-popup__number-input--up');
-            downArrow.classList.add('wp-popup__number-input--down');
-
-            input.setAttribute('readonly', true);
-            input.value = initValue + prefix;
-
-            el.appendChild(upArrow);
-            el.appendChild(downArrow);
-
-            upArrow.addEventListener('click', function() {
-                var curValue = parseInt(input.value)
-                if (curValue < maxValue) {
-                    input.value = parseInt(input.value) + 1 + prefix;
-                }
-
-            }, false);
-            downArrow.addEventListener('click', function() {
-                var curValue = parseInt(input.value)
-                if (curValue > 0) {
-                    input.value = parseInt(input.value) - 1 + prefix;
-                }
-            }, false);
-        }
-    });
-
-    Vue.directive('dropdown', {
-        inserted: function(el) {
-
-        }
-    });
 })();
