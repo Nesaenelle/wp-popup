@@ -4,6 +4,8 @@
 @import "overall.scss";
 @import "start.scss";
 @import "overlay.scss";
+@import "my_overlays.scss";
+@import "settings.scss";
 
 body {
     font-family: 'Open Sans', sans-serif;
@@ -12,3 +14,10 @@ body {
 }
 
 [v-cloak] { display:none; }
+
+.tox-silver-sink {
+	display: none;
+}
+.tox.tox-tinymce {
+	z-index: 1;
+}

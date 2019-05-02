@@ -12,31 +12,60 @@
 </head>
 
 <body>
-    <div class="wp-popup__container wp-popup__create-overlay" >
-
-        <h3 class="wp-popup__title">
-                My Overlays
-        </h3>
-
-        <div class="wp-popup__annotataion">You can always change the design, content and settings created by the overlay</div>
-        
-        <div class="wp-popup__content">
-            <div class="table">
-                
-            </div>
+    <div class="wp-popup__container wp-popup__my-overlays" id="my-overlays-app">
+        <div class="wp-popup__notification wp-popup__notification--success" v-if="newOverlay">
+            New overlay is created
         </div>
-
+        <h3 class="wp-popup__title">
+            My Overlays
+        </h3>
+        <div class="wp-popup__annotataion" v-if="!newOverlay">You can always change the design, content and settings created by the overlay</div>
+        <div class="wp-popup__annotataion" v-if="newOverlay">You just create new overlay (with tag <span>#new</span>)</div>
+        <div class="wp-popup__content">
+            <div class="wp-popup__table wp-popup__table_col--4">
+                <div class="wp-popup__table_head">
+                    <div class="wp-popup__table_head--row">
+                        <div class="wp-popup__table_head--col">Overlay’s name</div>
+                        <div class="wp-popup__table_head--col">Status</div>
+                        <div class="wp-popup__table_head--col">Display</div>
+                        <div class="wp-popup__table_head--col">Action</div>
+                    </div>
+                </div>
+                <div class="wp-popup__table_body">
+                    <div class="wp-popup__table_body">
+                        <div class="wp-popup__table_body--row" v-for="item in overlays">
+                            <div class="wp-popup__table_body--col">
+                                Overlay_test_one_1223
+                            </div>
+                            <div class="wp-popup__table_body--col">
+                                <a href="" class="wp-popup__link wp-popup__link--grey  wp-popup__link--underline">Preview</a>
+                                <label class="wp-popup__checkbox">
+                                    <input type="checkbox">
+                                    <div class="wp-popup__checkbox--icon"></div>
+                                    <div class="wp-popup__checkbox--text">On</div>
+                                </label>
+                            </div>
+                            <div class="wp-popup__table_body--col">
+                                displayed on 2 page/post
+                            </div>
+                            <div class="wp-popup__table_body--col">
+                                <button class="wp-popup__btn wp-popup__btn--light-grey">Edit</button>
+                                <a href="" class="wp-popup__link wp-popup__link--grey wp-popup__link--underline">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="overlay.html" class="wp-popup__link">Create new overlay</a>
+        </div>
     </div>
-    <!-- <script src="src/jquery-3.4.0.min.js"></script> -->
-<!--     <script>
+    <script>
     var OVERLAY_DATA = [
-        [{ size: '1000*500', id: 1 }, { size: '1000*500', id: 2 }],
-        [{ size: '960*400', id: 1 }, { size: '960*400', id: 2 }],
-        [{ size: '1120*600', id: 1 }, { size: '1120*600', id: 2 }],
+        {}, {}, {}
     ];
-    </script> -->
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-    <!-- <script src="src/overlay.js"></script> -->
+    <script src="src/my-overlays.js"></script>
 </body>
 
 </html>

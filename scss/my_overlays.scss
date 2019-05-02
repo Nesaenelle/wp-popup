@@ -1,0 +1,25 @@
+.wp-popup {
+
+    &__my-overlays {
+        padding: 60px 42px 60px 39px;
+
+        .wp-popup__content {
+            background: none;
+            padding: 0;
+            border: none;
+			margin-top: 6px;
+        }
+
+        .wp-popup__table {
+            &+.wp-popup__link {
+                margin-top: 10px;
+                display: block;
+                font-weight: 600;
+            }
+        }
+
+
+    }
+
+
+}

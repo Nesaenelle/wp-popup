@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Popup plugin</title>
+    <link rel="stylesheet" href="public/main.css" />
+    <!-- Fix for iOS Safari zooming bug -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wp-popup__container wp-popup__settings" id="settings-app">
+
+        <h3 class="wp-popup__title">
+                Settings
+        </h3>
+
+        <div class="wp-popup__content">
+            <div>License key</div>
+            <input type="text" placeholder="____-____-____-____-____">
+            <div>You can buy a license here if you don&apos;t have it</div>
+        </div>
+
+
+        <div class="wp-popup__content">
+            <div>Updates</div>
+            <label class="wp-popup__checkbox">
+                <input type="checkbox">
+                <div class="wp-popup__checkbox--icon"></div>
+                <div class="wp-popup__checkbox--text"> Update plugin automatically</div>
+            </label>
+        </div>
+
+        <div class="wp-popup__buttons">
+            <button class="wp-popup__btn wp-popup__btn--blue">Save</button>
+        </div>
+
+    </div>
+
+    <script>
+        var OVERLAY_DATA = [
+            {}, {}, {}
+        ];
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="src/my-overlays.js"></script>
+</body>
+
+</html>
