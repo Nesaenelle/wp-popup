@@ -8,6 +8,10 @@
             // padding: 0;
             border: none;
             margin-top: 6px;
+            &--title {
+                font-size: 14px;
+                  font-weight: 600;
+            }
         }
 
         .wp-popup__buttons {
