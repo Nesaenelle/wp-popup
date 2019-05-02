@@ -12,41 +12,38 @@
 </head>
 
 <body>
-    <div class="wp-popup__container wp-popup__settings" id="settings-app">
+    <div class="wp-popup__container wp-popup__settings" id="settings-app" v-cloak>
 
         <h3 class="wp-popup__title">
                 Settings
         </h3>
+        
+        <form>
+            <div class="wp-popup__content">
+                <div class="wp-popup__content--title">License key</div>
+                <input type="text" placeholder="____-____-____-____-____" required v-model="license_key">
+                <div class="wp-popup__content--annotation">You can <a href="">buy a license here </a> if you don&apos;t have it</div>
+            </div>
 
-        <div class="wp-popup__content">
-            <div class="wp-popup__content--title">License key</div>
-            <input type="text" placeholder="____-____-____-____-____">
-            <div>You can buy a license here if you don&apos;t have it</div>
-        </div>
 
+            <div class="wp-popup__content">
+                <div class="wp-popup__content--title">Updates</div>
+                <label class="wp-popup__checkbox">
+                    <input type="checkbox" v-model="update_automatically">
+                    <div class="wp-popup__checkbox--icon"></div>
+                    <div class="wp-popup__checkbox--text"> Update plugin automatically</div>
+                </label>
+            </div>
 
-        <div class="wp-popup__content">
-            <div class="wp-popup__content--title">Updates</div>
-            <label class="wp-popup__checkbox">
-                <input type="checkbox">
-                <div class="wp-popup__checkbox--icon"></div>
-                <div class="wp-popup__checkbox--text"> Update plugin automatically</div>
-            </label>
-        </div>
-
-        <div class="wp-popup__buttons">
-            <button class="wp-popup__btn wp-popup__btn--blue">Save</button>
-        </div>
+            <div class="wp-popup__buttons">
+                <button class="wp-popup__btn wp-popup__btn--blue" type="submit">Save</button>
+            </div>
+        </form>
 
     </div>
 
-    <script>
-        var OVERLAY_DATA = [
-            {}, {}, {}
-        ];
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-    <script src="src/my-overlays.js"></script>
+    <script src="src/settings.js"></script>
 </body>
 
 </html>

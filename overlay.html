@@ -22,7 +22,6 @@
         <div class="wp-popup__notification wp-popup__notification--error" v-if="overlayContentError && (step === 2)">
             You need change content on overlay
         </div>
-
         <div class="wp-popup__notification wp-popup__notification--success" v-if="step === 4">
             Create custom rules for the new overlay
         </div>
@@ -31,7 +30,6 @@
                 <span v-if="step < 5">Create Overlay POP-up <span v-if="step >= 2" class="wp-popup__title--project-name">/{{overlayName}}</span> </span>
                 <span v-if="step === 5">Overlay <span>“{{overlayName}}”</span> created</span>
             </h3>
-   
             <div class="wp-popup__progressbar" :data-step="step">
                 <div class="wp-popup__progressbar--label">Select template</div>
                 <div class="wp-popup__progressbar--label">Edit template</div>
@@ -76,7 +74,7 @@
                     <div class="wp-popup__overlays-list__item" v-for="item in overlay" @click="selectOverlay(item)" :class="{selected: item === selectedOverlay}">
                         <div class="wp-popup__overlays-list__item--resolution">{{item.size}} #{{item.id}}</div>
                         <div class="wp-popup__overlays-list__item--image">
-                            <img src="img/" alt="">
+                            <img :src="item.img" alt="">
                             <div class="wp-popup__overlays-list__item--selected" v-if="item === selectedOverlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11">
                                     <path fill="#FFF" fill-rule="evenodd" d="M14 2.2L5.386 11l-.002-.001V11L0 5.5l2.153-2.2 3.231 3.3L11.847 0z" />
@@ -87,31 +85,25 @@
                 </div>
             </div>
         </div>
-        <div class="wp-popup__content wp-popup__overlay-edit" v-if="step === 2 || step === 3 || step === 5">
+        <div class="wp-popup__content wp-popup__overlay-edit" v-if="step === 2 || step === 3 || step === 5" 
+        :class="{'wp-popup__content--error': overlayContentError}">
             <div class="wp-popup__overlay-edit__desktop">
                 <div class="wp-popup__overlay-edit__desktop--resolution">1200_600_desktop ver.</div>
                 <div class="wp-popup__overlay-edit__desktop--image">
-                    <img src="img/medicine.jpg" alt="">
-                    <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--1" 
-                        @click.stop="changeText('text1')" :class="{'filled': overlayText.text1 || step === 5, 'inactive': step === 5}">
+                    <img :src="selectedOverlay.img" alt="">
+                    <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--1" @click.stop="changeText('text1')" :class="{'filled': overlayText.text1 || step === 5, 'inactive': step === 5}">
                         <input type="text" v-model="overlayText.text1" ref="text1">
                         <div class="wp-popup__overlay-edit__desktop_text--field" v-html="overlayText.text1"></div>
                     </div>
-
-                    <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--2" 
-                        @click.stop="changeText('text2')" :class="{'filled': overlayText.text2 || step === 5, 'inactive': step === 5}">
+                    <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--2" @click.stop="changeText('text2')" :class="{'filled': overlayText.text2 || step === 5, 'inactive': step === 5}">
                         <input type="text" v-model="overlayText.text2" ref="text2">
                         <div class="wp-popup__overlay-edit__desktop_text--field" v-html="overlayText.text2"></div>
                     </div>
-
-                    <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--3" 
-                        @click.stop="changeText('text3')" :class="{'filled': overlayText.text3 || step === 5, 'inactive': step === 5}">
+                    <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--3" @click.stop="changeText('text3')" :class="{'filled': overlayText.text3 || step === 5, 'inactive': step === 5}">
                         <input type="text" v-model="overlayText.text3" ref="text3">
                         <div class="wp-popup__overlay-edit__desktop_text--field" v-html="overlayText.text3"></div>
                     </div>
-
-                    <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--4" 
-                        @click.stop="changeText('text4')" :class="{'filled': overlayText.text4 || step === 5, 'inactive': step === 5}">
+                    <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--4" @click.stop="changeText('text4')" :class="{'filled': overlayText.text4 || step === 5, 'inactive': step === 5}">
                         <input type="text" v-model="overlayText.text4" ref="text4">
                         <div class="wp-popup__overlay-edit__desktop_text--field" v-html="overlayText.text4"></div>
                     </div>
@@ -119,7 +111,18 @@
             </div>
             <div class="wp-popup__overlay-edit__mobile">
                 <div class="wp-popup__overlay-edit__desktop--resolution">1200_600_mobile ver.</div>
-                <div class="wp-popup__overlay-edit__mobile--image"></div>
+                <div class="wp-popup__overlay-edit__mobile--image">
+                    <img :src="selectedOverlay.img" alt="">
+                    <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--1 filled inactive">
+                        <div class="wp-popup__overlay-edit__mobile_text--field" v-html="overlayText.text1"></div>
+                    </div>
+                    <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--2 filled inactive">
+                        <div class="wp-popup__overlay-edit__mobile_text--field" v-html="overlayText.text2"></div>
+                    </div>
+                    <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--3 filled inactive">
+                        <div class="wp-popup__overlay-edit__mobile_text--field" v-html="overlayText.text3"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="wp-popup__overlay-settings" v-if="step === 4">
@@ -141,6 +144,9 @@
                         <div class="wp-popup__checkbox--icon"></div>
                         <div class="wp-popup__checkbox--text">Delay (seconds):</div>
                     </label>
+                    <div class="wp-popup__number-input" v-number>
+                        <input type="text" maxlength="5" init-value="1" max-value="100">
+                    </div>
                 </div>
                 <div class="wp-popup__overlay-settings_content--col">
                     <label class="wp-popup__checkbox">
@@ -148,7 +154,9 @@
                         <div class="wp-popup__checkbox--icon"></div>
                         <div class="wp-popup__checkbox--text">Show after scroll(%):</div>
                     </label>
-
+                    <div class="wp-popup__number-input" v-number>
+                        <input type="text" maxlength="5" init-value="20" max-value="100" prefix="%">
+                    </div>
                     <div class="wp-popup__overlay-settings_content--annotation">Percentage in percent to scroll the selected page</div>
                 </div>
             </div>
@@ -172,24 +180,61 @@
                 </div>
             </div>
             <div class="wp-popup__overlay-settings_section">Smart filter <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.</i></div>
+            <div class="wp-popup__overlay-settings_content">
+                <div></div>
+                <div>Added rules for this overlay</div>
+                <div class="wp-popup__table wp-popup__table_col--6">
+                    <div class="wp-popup__table_head">
+                        <div class="wp-popup__table_head--row">
+                            <div class="wp-popup__table_head--col"></div>
+                            <div class="wp-popup__table_head--col">Subject</div>
+                            <div class="wp-popup__table_head--col">Сondition</div>
+                            <div class="wp-popup__table_head--col">Сontent</div>
+                            <div class="wp-popup__table_head--col">Amount</div>
+                            <div class="wp-popup__table_head--col" @click="clearAllRules()">Clear all</div>
+                        </div>
+                    </div>
+                    <div class="wp-popup__table_body">
+                        <div class="wp-popup__table_body">
+                            <div class="wp-popup__table_body--row" v-for="(rule, index) in rules">
+                                <div class="wp-popup__table_body--col">
+                                    {{rule.title}}
+                                </div>
+                                <div class="wp-popup__table_body--col">
+                                    {{rule.subject}}
+                                </div>
+                                <div class="wp-popup__table_body--col">
+                                    {{rule.condition}}
+                                </div>
+                                <div class="wp-popup__table_body--col">
+                                    {{rule.content}}
+                                </div>
+                                <div class="wp-popup__table_body--col">
+                                    {{rule.amount}}
+                                </div>
+                                <div class="wp-popup__table_body--col">
+                                    <a href="" @click.prevent="removeRule(rule, index)" class="wp-popup__link wp-popup__link--grey wp-popup__link--underline">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-<!--         <div class="wp-popup__content" v-if="step === 5">
+        <!--         <div class="wp-popup__content" v-if="step === 5">
             <div class="wp-popup__overlays-list">
                 DONE
             </div>
         </div> -->
         <div class="wp-popup__buttons">
             <button class="wp-popup__btn wp-popup__btn--back" @click="back()" v-if="step > 0">Back</button>
-            <button class="wp-popup__btn" @click="nextStep()" v-if="step === 0 || step === 1" 
-            :class="{'wp-popup__btn--grey': !selectedOverlay || !overlayName, 'wp-popup__btn--blue': selectedOverlay && overlayName}">
+            <button class="wp-popup__btn" @click="nextStep()" v-if="step === 0 || step === 1" :class="{'wp-popup__btn--grey': !selectedOverlay || !overlayName, 'wp-popup__btn--blue': selectedOverlay && overlayName}">
                 Next step
             </button>
-            <button class="wp-popup__btn" @click="nextStep()" v-if="step === 2 || step === 3" 
-            :class="{'wp-popup__btn--grey': !overlayTextFilled, 'wp-popup__btn--blue': overlayTextFilled}">
+            <button class="wp-popup__btn" @click="nextStep()" v-if="step === 2 || step === 3" :class="{'wp-popup__btn--grey': !overlayTextFilled, 'wp-popup__btn--blue': overlayTextFilled}">
                 Next step
             </button>
-            <button class="wp-popup__btn" @click="nextStep()" v-if="step === 4" 
-            :class="{'wp-popup__btn--grey': true, 'wp-popup__btn--blue': false}">
+            <button class="wp-popup__btn" @click="nextStep()" v-if="step === 4" :class="{'wp-popup__btn--grey': false, 'wp-popup__btn--blue': true}">
                 Next step
             </button>
             <button class="wp-popup__btn wp-popup__btn--blue" @click="done()" v-if="step === 5"><a href="my_overlays.html">Done</a></button>
@@ -198,9 +243,16 @@
     <!-- <script src="src/jquery-3.4.0.min.js"></script> -->
     <script>
     var OVERLAY_DATA = [
-        [{ size: '1000*500', id: 1 }, { size: '1000*500', id: 2 }],
-        [{ size: '960*400', id: 1 }, { size: '960*400', id: 2 }],
-        [{ size: '1120*600', id: 1 }, { size: '1120*600', id: 2 }],
+        [{ size: '1000*500', id: 1, img: 'img/medicine.jpg' }, { size: '1000*500', id: 2, img: 'img/medicine.jpg' }],
+        [{ size: '960*400', id: 1, img: 'img/medicine.jpg' }, { size: '960*400', id: 2, img: 'img/medicine.jpg' }],
+        [{ size: '1120*600', id: 1, img: 'img/medicine.jpg' }, { size: '1120*600', id: 2, img: 'img/medicine.jpg' }],
+    ];
+
+
+    var RULES_DATA = [
+        { title: 'Rule #1', subject: 'Page', condition: 'exact much', content: 'http://example.com/corgi', amount: 'displayed on 2 page/post' },
+        { title: 'Rule #2', subject: 'Category', condition: 'contains', content: 'http://example.com/corgi', amount: 'displayed on 2444 page/post' },
+        { title: 'Rule #3', subject: 'Tag', condition: 'does not contain', content: 'http://example.com/corgi', amount: 'displayed on 335 page/post' }
     ];
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>

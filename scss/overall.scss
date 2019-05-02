@@ -10,10 +10,31 @@
         align-content: flex-start;
         max-width: 1222px;
         margin: auto;
+        position: relative;
 
         input {
             outline: none;
             font-family: 'Open Sans', sans-serif;
+
+            &::-webkit-input-placeholder {
+                /* Chrome/Opera/Safari */
+                color: #d8d8d8;
+            }
+
+            &::-moz-placeholder {
+                /* Firefox 19+ */
+                color: #d8d8d8;
+            }
+
+            &:-ms-input-placeholder {
+                /* IE 10+ */
+                color: #d8d8d8;
+            }
+
+            &:-moz-placeholder {
+                /* Firefox 18- */
+                color: #d8d8d8;
+            }
         }
     }
 
@@ -43,7 +64,13 @@
         padding: 15px 11px 15px 10px;
         border: solid 1px #979797;
         width: 100%;
-
+        
+        &--empty {
+            background: none;
+            padding: 0;
+            border: none;
+            margin-top: 8px;
+        }
         &--error {
             box-shadow: inset 0 0 3px 3px #ff0000;
         }
@@ -180,7 +207,7 @@
         font-family: 'Open Sans', sans-serif;
         cursor: pointer;
         transition: 0.1s;
-
+        font-weight: 300;
         &--light-blue {
             border: 1px solid #1075a0;
             background: rgba(54, 163, 202, 0.18);
@@ -195,12 +222,11 @@
 
         &--blue {
             border: 1px solid #1075a0;
-            background: $c-windows-blue;
+            background: #00a8e6;
             color: #fff;
-            font-weight: 300;
 
             &:hover {
-                background: darken($c-windows-blue, 10%);
+                background: darken(#00a8e6, 10%);
             }
         }
 
@@ -218,6 +244,7 @@
             background: #f6f6f6;
             color: $c-brownish-grey;
             border: 1px solid #cecece;
+
             &:hover {
                 background: darken(#f6f6f6, 10%);
             }
@@ -271,7 +298,70 @@
             box-shadow: inset 0 0px 3px -1px rgba(0, 0, 0, 0.32);
             border: solid 1px #cacaca;
             background-color: #ffffff;
-            margin-right: 8px;
+            margin-right: 11px;
+        }
+    }
+
+    &__number-input {
+        position: relative;
+        margin-right: 15px;
+        input {
+            height: 24px;
+            width: 55px;
+            border-radius: 3px;
+            border: solid 1px #dfdfdf;
+            background-color: #ffffff;
+            padding: 0 5px;
+            font-family: Helvetica;
+            font-size: 12px;
+        }
+        &--up {
+            cursor: pointer;
+            position: absolute;
+            right: 5px;
+            top: 7px;
+            width: 0; 
+            height: 0; 
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            
+            border-bottom: 4px solid #cacaca;
+            &:hover {
+                transform: scale(1.3);
+            }
+            &:after {
+                content: '';
+                pointer-events: auto;
+                width: calc(100% + 10px);
+                height: calc(100% + 10px);
+                position: absolute;
+                left: -5px;
+                top: -5px;
+            }
+        }
+        &--down {
+            cursor: pointer;
+            position: absolute;
+            right: 5px;
+            top: 15px;
+            width: 0; 
+            height: 0; 
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            
+            border-top: 4px solid #cacaca;
+            &:hover {
+                transform: scale(1.3);
+            }
+            &:after {
+                content: '';
+                pointer-events: auto;
+                width: calc(100% + 10px);
+                height: calc(100% + 10px);
+                position: absolute;
+                left: -5px;
+                top: -5px;
+            }
         }
     }
 
@@ -289,6 +379,7 @@
         }
 
         &_col--4 {
+
             .wp-popup__table_head--col,
             .wp-popup__table_body--col {
                 &:nth-child(1) {
@@ -296,20 +387,71 @@
                 }
 
                 &:nth-child(2) {
-                    width: 20%;
+                    width: 26%;
                 }
 
                 &:nth-child(3) {
-                    width: 40%;
-                    font-style: italic;
+                    width: 34%;
                     font-size: 13px;
                 }
 
                 &:nth-child(4) {
-                    width: 140px;
+                    width: 135px;
+
                     .wp-popup__btn {
-                        margin-right: 15px;
+                        margin-right: 18px;
                     }
+                }
+            }
+
+            .wp-popup__table_body--col {
+                &:nth-child(3) {
+                    font-style: italic;
+                }
+            }
+        }
+
+        &_col--6 {
+
+            .wp-popup__table_head--col,
+            .wp-popup__table_body--col {
+                font-size: 13px;
+                font-weight: 400;
+                height: 32px;
+                &:nth-child(1) {
+                    width: 100px;
+                }
+
+                &:nth-child(2) {
+                    width: 120px;
+                }
+
+                &:nth-child(3) {
+                   width: 130px;
+                }
+
+                &:nth-child(4) {
+                    width: 30%;
+                }
+
+                &:nth-child(5) {
+                    width: 30%;
+                }
+
+                &:nth-child(6) {
+                    width: 80px;
+                    text-align: center;
+                    text-decoration: underline;
+                    cursor: pointer;
+                     a {
+                        margin: auto;
+                     }
+                }
+            }
+
+            .wp-popup__table_body--col {
+                &:nth-child(5) {
+                    font-style: italic;
                 }
             }
         }
@@ -323,7 +465,7 @@
             }
 
             &--col {
-                padding: 5px 10px;
+                padding: 8px 10px;
                 font-size: 14px;
                 font-weight: 600;
                 color: #f9f9f9;
@@ -347,7 +489,8 @@
             &--col {
                 font-size: 14px;
                 color: #5f5f5f;
-                padding: 3px 10px;
+                padding: 2px 10px;
+                height: 32px;
                 display: flex;
                 align-items: center;
             }

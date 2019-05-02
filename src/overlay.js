@@ -1,10 +1,11 @@
-
 (function() {
+
     var app = new Vue({
         el: '#overlay-app',
         data: {
             step: 0,
             overlays: OVERLAY_DATA,
+            rules: RULES_DATA,
             overlayName: '',
             overlayText: {
                 text1: 'example',
@@ -18,17 +19,17 @@
             overlayContentError: false
         },
         computed: {
-        	overlayTextFilled: function() {
-        		return this.overlayText.text1 && this.overlayText.text2 && this.overlayText.text3 && this.overlayText.text4;
-        	}
+            overlayTextFilled: function() {
+                return this.overlayText.text1 && this.overlayText.text2 && this.overlayText.text3 && this.overlayText.text4;
+            }
         },
         mounted: function() {
-        	var vm = this;
-        	window.addEventListener('click', function(e) {
-        		if (tinymce.editors.length > 0 && !document.querySelector('.tox').contains(e.target)) {
-        			vm.removeAllEditors();
-        		}
-        	}, false);
+            var vm = this;
+            window.addEventListener('click', function(e) {
+                if (tinymce.editors.length > 0 && !document.querySelector('.tox').contains(e.target)) {
+                    vm.removeAllEditors();
+                }
+            }, false);
         },
         methods: {
             selectOverlay: function(overlay) {
@@ -39,7 +40,7 @@
             changeText: function(ref) {
                 var vm = this;
                 if ((this.step === 2 || this.step === 3) && this.$refs[ref]) {
-                	vm.removeAllEditors();
+                    vm.removeAllEditors();
                     var tiny = tinymce.init({
                         target: this.$refs[ref],
                         menubar: false,
@@ -47,11 +48,11 @@
                             ed.on('change', function(e) {
                                 vm.overlayText[ref] = ed.getContent();
 
-                                if(vm.overlayTextFilled) {
-                                	vm.step = 3;
-                                	vm.overlayContentError = false;
+                                if (vm.overlayTextFilled) {
+                                    vm.step = 3;
+                                    vm.overlayContentError = false;
                                 } else {
-                                	vm.step = 2;
+                                    vm.step = 2;
                                 }
                             });
                             ed.on('blur', function(e) {
@@ -63,24 +64,24 @@
 
             },
             removeAllEditors: function() {
-            	if (tinymce.editors.length > 0) {
-            	    for (i = 0; i < tinymce.editors.length; i++) {
-            	        tinyMCE.editors[i].remove();
-            	    }
-            	}
+                if (tinymce.editors.length > 0) {
+                    for (i = 0; i < tinymce.editors.length; i++) {
+                        tinyMCE.editors[i].remove();
+                    }
+                }
             },
             back: function() {
                 this.step--;
                 if (this.step === 0) {
                     this.selectedOverlay = null;
                 }
-                if(this.step === 2) {
-                	this.overlayText ={
-		                text1: 'example',
-		                text2: 'example',
-		                text3: 'example',
-		                text4: ''
-		            };
+                if (this.step === 2) {
+                    this.overlayText = {
+                        text1: 'example',
+                        text2: 'example',
+                        text3: 'example',
+                        text4: ''
+                    };
                 }
             },
             nextStep: function() {
@@ -97,12 +98,12 @@
                     } else {
                         this.selectOverlayError = true;
                     }
-                } else if (this.step === 2 || this.step === 3) {	
-                    if(this.overlayTextFilled) {
- 						this.step++;
- 						this.overlayContentError = false;
+                } else if (this.step === 2 || this.step === 3) {
+                    if (this.overlayTextFilled) {
+                        this.step++;
+                        this.overlayContentError = false;
                     } else {
-                    	this.overlayContentError = true;
+                        this.overlayContentError = true;
                     }
                 } else if (this.step === 4) {
                     this.step++;
@@ -110,9 +111,56 @@
                     this.step++;
                 }
             },
+            removeRule: function(rule, index) {
+                this.rules.splice(index, 1);
+            },
+            clearAllRules: function() {
+                this.rules = [];
+            },
             done: function() {
 
             }
         }
-    })
+    });
+
+
+    Vue.directive('number', {
+        inserted: function(el) {
+            var input = el.querySelector('input');
+            var initValue = input.getAttribute('init-value');
+            var maxValue = parseInt(input.getAttribute('max-value'));
+            var prefix = input.getAttribute('prefix') || '';
+            var upArrow = document.createElement('div');
+            var downArrow = document.createElement('div');
+
+            upArrow.classList.add('wp-popup__number-input--up');
+            downArrow.classList.add('wp-popup__number-input--down');
+
+            input.setAttribute('readonly', true);
+            input.value = initValue + prefix;
+
+            el.appendChild(upArrow);
+            el.appendChild(downArrow);
+
+            upArrow.addEventListener('click', function() {
+                var curValue = parseInt(input.value)
+                if (curValue < maxValue) {
+                    input.value = parseInt(input.value) + 1 + prefix;
+                }
+
+            }, false);
+            downArrow.addEventListener('click', function() {
+                var curValue = parseInt(input.value)
+                if (curValue > 0) {
+                    input.value = parseInt(input.value) - 1 + prefix;
+                }
+            }, false);
+        }
+    });
+
+    Vue.directive('dropdown', {
+        inserted: function(el) {
+
+        }
+    });
 })();

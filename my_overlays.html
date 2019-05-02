@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="wp-popup__container wp-popup__my-overlays" id="my-overlays-app">
+    <div class="wp-popup__container wp-popup__my-overlays" id="my-overlays-app" v-cloak>
         <div class="wp-popup__notification wp-popup__notification--success" v-if="newOverlay">
             New overlay is created
         </div>
@@ -21,7 +21,7 @@
         </h3>
         <div class="wp-popup__annotataion" v-if="!newOverlay">You can always change the design, content and settings created by the overlay</div>
         <div class="wp-popup__annotataion" v-if="newOverlay">You just create new overlay (with tag <span>#new</span>)</div>
-        <div class="wp-popup__content">
+        <div class="wp-popup__content wp-popup__content--empty">
             <div class="wp-popup__table wp-popup__table_col--4">
                 <div class="wp-popup__table_head">
                     <div class="wp-popup__table_head--row">
@@ -33,12 +33,12 @@
                 </div>
                 <div class="wp-popup__table_body">
                     <div class="wp-popup__table_body">
-                        <div class="wp-popup__table_body--row" v-for="item in overlays">
+                        <div class="wp-popup__table_body--row" v-for="(overlay, index) in overlays">
                             <div class="wp-popup__table_body--col">
-                                Overlay_test_one_1223
+                                {{overlay.title}}
                             </div>
                             <div class="wp-popup__table_body--col">
-                                <a href="" class="wp-popup__link wp-popup__link--grey  wp-popup__link--underline">Preview</a>
+                                <a href="" @click.stop.prevent="openModal(overlay)" class="wp-popup__link wp-popup__link--grey  wp-popup__link--underline">Preview</a>
                                 <label class="wp-popup__checkbox">
                                     <input type="checkbox">
                                     <div class="wp-popup__checkbox--icon"></div>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="wp-popup__table_body--col">
                                 <button class="wp-popup__btn wp-popup__btn--light-grey">Edit</button>
-                                <a href="" class="wp-popup__link wp-popup__link--grey wp-popup__link--underline">Delete</a>
+                                <a href="" @click.prevent="removeOverlay(overlay, index)" class="wp-popup__link wp-popup__link--grey wp-popup__link--underline">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -58,10 +58,53 @@
             </div>
             <a href="overlay.html" class="wp-popup__link">Create new overlay</a>
         </div>
+        <div class="wp-popup__modal" v-if="showModal">
+            <div class="wp-popup__modal_content" ref="modal">
+                <div @click="closeModal()" class="wp-popup__modal--close"></div>
+                <div class="wp-popup__modal--title">Preview overlay</div>
+                <div class="wp-popup__content wp-popup__overlay-edit">
+                    <div class="wp-popup__overlay-edit__desktop">
+                        <div class="wp-popup__overlay-edit__desktop--resolution">1200_600_desktop ver.</div>
+                        <div class="wp-popup__overlay-edit__desktop--image">
+                            <img :src="modalData.img" alt="">
+                            <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--1 inactive filled">
+                                <div class="wp-popup__overlay-edit__desktop_text--field" v-html="modalData.text1"></div>
+                            </div>
+                            <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--2 inactive filled">
+                                <div class="wp-popup__overlay-edit__desktop_text--field" v-html="modalData.text2"></div>
+                            </div>
+                            <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--3 inactive filled">
+                                <div class="wp-popup__overlay-edit__desktop_text--field" v-html="modalData.text3"></div>
+                            </div>
+                            <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--4 inactive filled">
+                                <div class="wp-popup__overlay-edit__desktop_text--field" v-html="modalData.text4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wp-popup__overlay-edit__mobile">
+                        <div class="wp-popup__overlay-edit__desktop--resolution">1200_600_mobile ver.</div>
+                        <div class="wp-popup__overlay-edit__mobile--image">
+                            <img :src="modalData.img" alt="">
+                            <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--1 filled inactive">
+                                <div class="wp-popup__overlay-edit__mobile_text--field" v-html="modalData.text1"></div>
+                            </div>
+                            <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--2 filled inactive">
+                                <div class="wp-popup__overlay-edit__mobile_text--field" v-html="modalData.text2"></div>
+                            </div>
+                            <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--3 filled inactive">
+                                <div class="wp-popup__overlay-edit__mobile_text--field" v-html="modalData.text3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
     var OVERLAY_DATA = [
-        {}, {}, {}
+        { title: 'Overlay_test_one_1223', img: 'img/medicine.jpg', text1: 'example', text2: 'example', text3: 'example', text4: 'example' }, 
+        { title: 'Overlay_test_one_1224', img: 'img/medicine.jpg', text1: 'example', text2: 'example', text3: 'example', text4: 'example'  }, 
+        { title: 'Overlay_test_one_1225', img: 'img/medicine.jpg', text1: 'example', text2: 'example', text3: 'example', text4: 'example' }
     ];
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
