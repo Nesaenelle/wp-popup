@@ -13,8 +13,7 @@
 
         },
         methods: {
-
-            openModal: function() {
+            submit: function() {
 
             }
         }

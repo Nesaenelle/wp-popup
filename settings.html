@@ -18,7 +18,7 @@
                 Settings
         </h3>
         
-        <form>
+        <form @submit.prevent="submit()">
             <div class="wp-popup__content">
                 <div class="wp-popup__content--title">License key</div>
                 <input type="text" placeholder="____-____-____-____-____" required v-model="license_key">

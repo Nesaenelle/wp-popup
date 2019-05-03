@@ -267,7 +267,9 @@
             <button class="wp-popup__btn" @click="nextStep()" v-if="step === 4" :class="{'wp-popup__btn--grey': false, 'wp-popup__btn--blue': true}">
                 Next step
             </button>
-            <button class="wp-popup__btn wp-popup__btn--blue" @click="done()" v-if="step === 5"><a href="my_overlays.html">Done</a></button>
+            <a href="my_overlays.html">
+                <button class="wp-popup__btn wp-popup__btn--blue" @click="done()" v-if="step === 5">Done</button>
+            </a>
         </div>
     </div>
     <!-- <script src="src/jquery-3.4.0.min.js"></script> -->
