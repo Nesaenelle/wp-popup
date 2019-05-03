@@ -78,7 +78,7 @@
                     <div class="wp-popup__overlays-list__item" v-for="item in overlay" @click="selectOverlay(item)" :class="{selected: item === selectedOverlay}">
                         <div class="wp-popup__overlays-list__item--resolution">{{item.size}} #{{item.id}}</div>
                         <div class="wp-popup__overlays-list__item--image">
-                            <img :src="item.img" alt="">
+                            <img :src="item.preview" alt="">
                             <div class="wp-popup__overlays-list__item--selected" v-if="item === selectedOverlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11">
                                     <path fill="#FFF" fill-rule="evenodd" d="M14 2.2L5.386 11l-.002-.001V11L0 5.5l2.153-2.2 3.231 3.3L11.847 0z" />
@@ -272,12 +272,21 @@
             </a>
         </div>
     </div>
-    <!-- <script src="src/jquery-3.4.0.min.js"></script> -->
+
     <script>
     var OVERLAY_DATA = [
-        [{ size: '1000*500', id: 1, img: 'img/medicine.jpg' }, { size: '1000*500', id: 2, img: 'img/medicine.jpg' }],
-        [{ size: '960*400', id: 1, img: 'img/medicine.jpg' }, { size: '960*400', id: 2, img: 'img/medicine.jpg' }],
-        [{ size: '1120*600', id: 1, img: 'img/medicine.jpg' }, { size: '1120*600', id: 2, img: 'img/medicine.jpg' }],
+        [
+            { size: '1000*500', id: 1, preview: 'img/overlay-preview-1.jpg', img: 'img/overlay-1.jpg' }, 
+            { size: '1000*500', id: 2, preview: 'img/overlay-preview-2.jpg', img: 'img/overlay-2.jpg'}
+        ],
+        [
+            { size: '960*400', id: 1, preview: 'img/overlay-preview-3.jpg', img: 'img/overlay-3.jpg'}, 
+            { size: '960*400', id: 2, preview: 'img/overlay-preview-4.jpg', img: 'img/overlay-4.jpg'}
+        ],
+        [
+            { size: '1120*600', id: 1, preview: 'img/overlay-preview-5.jpg', img: 'img/overlay-5.jpg'}, 
+            { size: '1120*600', id: 2, preview: 'img/overlay-preview-6.jpg', img: 'img/overlay-6.jpg'}
+        ],
     ];
 
 

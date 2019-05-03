@@ -3,10 +3,19 @@
     &__start-page {
 
         .wp-popup__image {
+
+        }
+
+        .wp-popup__video {
+            outline: none;
+            border: none;
             max-width: 355px;
-            background: red;
             display: block;
             margin-top: 4px;
+            max-height: 201px;
+            width: 100%;
+            object-fit: cover;
+            height: 200px;
         }
 
         ul {
