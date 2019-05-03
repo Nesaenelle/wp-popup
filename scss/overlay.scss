@@ -2,6 +2,10 @@
 
     &__overlay {
         padding: 60px 42px 60px 39px;
+
+        @media screen and (max-width: 960px) {
+            padding: 60px 30px 0 0px;
+        }
     }
 
     &__top-panel {
@@ -9,6 +13,17 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 30px;
+
+        @media screen and (max-width: 960px) {
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .wp-popup__title {
+            @media screen and (max-width: 960px) {
+                width: 100%;
+            }
+        }
     }
 
     &__overlay-name {
@@ -19,6 +34,10 @@
         white-space: nowrap;
         align-items: center;
 
+        @media screen and (max-width: 1280px) {
+            flex-wrap: wrap;
+        }
+
         input {
             background: #fff;
             box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, .18);
@@ -26,6 +45,10 @@
             padding: 5px;
             width: 595px;
             margin: 0 8px 0 11px;
+
+            @media screen and (max-width: 1280px) {
+                max-width: 60%;
+            }
 
             &.wp-popup__input-error {
                 box-shadow: inset 0 0 1px 1px #ff0000;
@@ -44,6 +67,12 @@
             color: #898989;
             width: 100%;
             letter-spacing: 0.2px;
+
+            @media screen and (max-width: 1280px) {
+                padding-left: 109px;
+                white-space: normal;
+                width: 80%;
+            }
         }
     }
 
@@ -51,12 +80,27 @@
         display: flex;
         justify-content: space-between;
 
+        @media screen and (max-width: 960px) {
+            flex-wrap: wrap;
+        }
+
         &__col {
             width: 100%;
+
+            @media screen and (max-width: 960px) {
+                display: flex;
+                justify-content: space-between;
+            }
+
 
             // border: 1px solid;
             &:nth-child(1) {
                 max-width: 349px;
+                width: 100%;
+
+                @media screen and (max-width: 960px) {
+                    max-width: 100%;
+                }
 
                 .wp-popup__overlays-list__item--image {
                     height: 174px;
@@ -67,6 +111,11 @@
                 max-width: 338px;
                 margin: 0 8px;
 
+                @media screen and (max-width: 960px) {
+                    max-width: 100%;
+                    // width: 100%;
+                }
+
                 .wp-popup__overlays-list__item--image {
                     height: 139px;
                 }
@@ -75,8 +124,19 @@
             &:nth-child(3) {
                 max-width: 385px;
 
+                @media screen and (max-width: 960px) {
+                    max-width: 100%;
+                    // width: 100%;
+                }
+
                 .wp-popup__overlays-list__item--image {
                     height: 208px;
+                }
+            }
+
+            &+.wp-popup__overlays-list__col {
+                @media screen and (max-width: 960px) {
+                    margin-top: 15px;
                 }
             }
 
@@ -85,8 +145,16 @@
         &__item {
             cursor: pointer;
 
+            @media screen and (max-width: 960px) {
+                width: calc(100%/2 -20px);
+            }
+
             &+.wp-popup__overlays-list__item {
                 margin-top: 13px;
+
+                @media screen and (max-width: 960px) {
+                    margin-top: 0;
+                }
             }
 
             &.selected {
@@ -163,6 +231,7 @@
         margin-right: 12px;
         /* margin-top: 10px; */
         top: 0px;
+        height: 32px;
 
         &[data-step="0"] {
             .wp-popup__progressbar--label {
@@ -464,10 +533,20 @@
         padding: 87px 20px 104px 20px;
         margin-top: 5px;
 
+        @media screen and (max-width: 960px) {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            padding: 20px 0px 20px;
+        }
+
         &__desktop,
         &__mobile {
 
             margin: 0 34px;
+
+            @media screen and (max-width: 960px) {
+                margin: 0 15px;
+            }
 
             &--image {
                 position: relative;
@@ -523,6 +602,9 @@
                     top: 40px;
                     left: 10px;
                     max-width: 45%;
+                    @media screen and (max-width: 960px) {
+                        top: 30px;
+                    }
 
                     .wp-popup__overlay-edit__desktop_text--field,
                     .wp-popup__overlay-edit__mobile_text--field {
@@ -535,6 +617,7 @@
                         max-height: 80px;
                         min-width: 150px;
                         min-height: 30px;
+                        // max-width: 100%;
                         p {
                             margin: 0;
                             font-size: 16px;
@@ -548,6 +631,10 @@
                     width: 45%;
                     height: 100px;
                     padding: 4px 10px;
+                    @media screen and (max-width: 960px) {
+                        top: 20px;
+                        height: 70px;
+                    }
 
                     .wp-popup__overlay-edit__desktop_text--field,
                     .wp-popup__overlay-edit__mobile_text--field {
@@ -555,6 +642,7 @@
                         font-size: 32px;
                         line-height: 1.1em;
                         overflow: hidden;
+
                         p {
                             margin: 0;
                             font-size: 32px;
@@ -571,10 +659,15 @@
                     padding: 6px 20px;
                     box-shadow: 0 0 5px -3px #000;
 
+                     @media screen and (max-width: 960px) {
+                        top: 110px;
+                     }
+
                     .wp-popup__overlay-edit__desktop_text--field,
                     .wp-popup__overlay-edit__mobile_text--field {
                         font-size: 14px;
                         overflow: hidden;
+
                         p {
                             margin: 0;
                             font-size: 14px;
@@ -590,10 +683,15 @@
                     height: 78px;
                     padding: 2px 5px;
 
+                    @media screen and (max-width: 960px) {
+                        top: 205px;
+                    }
+
                     .wp-popup__overlay-edit__desktop_text--field,
                     .wp-popup__overlay-edit__mobile_text--field {
                         font-size: 28px;
                         overflow: hidden;
+
                         p {
                             margin: 0;
                             font-size: 28px;
@@ -616,8 +714,16 @@
         &__desktop {
             width: 650px;
 
+            @media screen and (max-width: 960px) {
+                width: 100%;
+            }
+
             &--image {
                 height: 346px;
+
+                @media screen and (max-width: 960px) {
+                    height: 300px;
+                }
 
                 &:after {
                     content: '';
@@ -636,14 +742,28 @@
                 position: absolute;
                 width: 550px;
                 margin-top: 30px;
+
+                @media screen and (max-width: 960px) {
+                    width: auto;
+                    min-width: 240px;
+                }
             }
         }
 
         &__mobile {
             width: 205px;
 
+            @media screen and (max-width: 960px) {
+                margin-top: 10px;
+                width: 150px;
+            }
+
             &--image {
                 height: 308px;
+
+                  @media screen and (max-width: 960px) {
+                    height: 200px;
+                  }
 
                 &:after {
                     content: '';
@@ -667,6 +787,15 @@
                     .wp-popup__overlay-edit__mobile_text--field {
                         padding: 5px;
                         font-size: 14px;
+                        @media screen and (max-width: 960px) {
+                           min-width: 100px;
+                           min-height: 20px;
+                           padding: 2px 4px;
+                        }
+                        p {
+                            margin: 0;
+                            font-size: 14px;
+                        }
                     }
                 }
 
@@ -726,12 +855,17 @@
                 font-weight: 300;
                 position: absolute;
                 left: 130px;
+                @media screen and (max-width: 960px) {
+                    position: static;
+                    padding-left: 30px;
+                }
             }
         }
 
         &_content {
             background: #fff;
             padding: 4px 19px 11px 19px;
+
             &:last-child {
                 padding: 9px 9px 11px 11px;
             }
@@ -742,6 +876,9 @@
 
             .wp-popup__checkbox {
                 margin-right: 13px;
+                &--text {
+                    white-space: nowrap;
+                }
                 &--icon {
                     margin-right: 8px;
                 }
@@ -772,14 +909,41 @@
         padding: 10px 73px 31px;
         display: flex;
         align-items: flex-end;
+
+        @media screen and (max-width: 960px) {
+            padding: 20px 60px 30px;
+            // flex-wrap: wrap;
+            display: block;
+        }
+
         .wp-popup__dropdown {
             margin-right: 14px;
+            @media screen and (max-width: 960px) {
+                display: block;
+                & + .wp-popup__dropdown  {
+                    margin-top: 10px;
+                }
+            }
         }
+
+        .wp-popup__btn {
+            min-width: 79px;
+            white-space: nowrap;
+             @media screen and (max-width: 960px) {
+                display: block;
+                margin-top: 10px;
+             }
+        }
+
         &__content {
             display: inline-block;
             // flex-wrap: wrap;
-            width: 350px;
+            max-width: 350px;
             margin-right: 15px;
+            width: 100%;
+            @media screen and (max-width: 960px) {
+                margin: 10px 0 0 0;
+            }
 
             input {
                 width: 100%;
@@ -804,7 +968,11 @@
                 line-height: 1.46;
                 color: #898989;
                 position: absolute;
+                @media screen and (max-width: 960px) {
+                    position: static;
+                }
             }
+
         }
     }
 }

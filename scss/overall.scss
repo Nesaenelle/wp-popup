@@ -90,10 +90,16 @@
 
         &--left {
             width: calc(100% - 260px - 8px);
+            @media screen and (max-width: 960px) {
+                width: 100%;
+            }
         }
 
         &--right {
             width: 260px;
+             @media screen and (max-width: 960px) {
+                display: none;
+             }
         }
 
         // a {
@@ -350,6 +356,7 @@
         &--icon {
             width: 16px;
             height: 16px;
+            min-width: 16px;
             box-shadow: inset 0 0px 3px -1px rgba(0, 0, 0, 0.32);
             border: solid 1px #cacaca;
             background-color: #ffffff;
@@ -500,6 +507,9 @@
             font-size: 14px;
             font-weight: 600;
             color: $c-brownish-grey;
+             @media screen and (max-width: 960px) {
+                margin-top: 10px;
+             }
         }
 
         &_col--4 {
@@ -566,6 +576,9 @@
 
                 &:nth-child(5) {
                     width: 32%;
+                    @media screen and (max-width: 960px) {
+                        display: none;
+                    }
                 }
 
                 &:nth-child(6) {
