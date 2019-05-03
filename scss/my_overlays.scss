@@ -31,6 +31,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-left: 160px;
+
+        @media screen and (max-width: 960px) {
+            padding-left: 35px;
+        }
+
+        @media screen and (max-width: 783px) {
+            padding-left: 0;
+        }
 
         &--close {
             position: absolute;
