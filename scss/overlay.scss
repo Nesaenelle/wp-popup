@@ -535,6 +535,10 @@
                         max-height: 80px;
                         min-width: 150px;
                         min-height: 30px;
+                        p {
+                            margin: 0;
+                            font-size: 16px;
+                        }
                     }
                 }
 
@@ -551,6 +555,10 @@
                         font-size: 32px;
                         line-height: 1.1em;
                         overflow: hidden;
+                        p {
+                            margin: 0;
+                            font-size: 32px;
+                        }
                     }
                 }
 
@@ -567,6 +575,10 @@
                     .wp-popup__overlay-edit__mobile_text--field {
                         font-size: 14px;
                         overflow: hidden;
+                        p {
+                            margin: 0;
+                            font-size: 14px;
+                        }
                     }
                 }
 
@@ -582,6 +594,10 @@
                     .wp-popup__overlay-edit__mobile_text--field {
                         font-size: 28px;
                         overflow: hidden;
+                        p {
+                            margin: 0;
+                            font-size: 28px;
+                        }
                     }
                 }
 

@@ -2,6 +2,10 @@
 
     &__my-overlays {
         padding: 60px 40px 60px 40px;
+
+        @media screen and (max-width: 960px) {
+            padding: 60px 30px 0 0px;
+        }
         
         .wp-popup__annotataion {
             margin-top: 9px;
@@ -17,7 +21,7 @@
     }
 
     &__modal {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         background: rgba(240, 240, 240, 0.5);
@@ -29,14 +33,16 @@
         &--close {
             position: absolute;
             top: 20px;
-            right: 20px;
-            width: 20px;
-            height: 20px;
+            right: 15px;
+            width: 14px;
+            height: 14px;
             cursor: pointer;
-            background: #f9f9f9;
+            background: url(../img/close-white.svg);
+            background-size: cover;
         }
         &_content {
-            width: calc(100% - 80px);
+            width: 100%;
+            max-width: 1150px;
             height: 600px;
             background: #5f5f5f;
             padding: 14px;
