@@ -28,6 +28,9 @@
             },
             removeOverlay: function(overlay, index) {
                 this.overlays.splice(index, 1);
+            },
+            removeNotification: function(event) {
+                event.target.parentNode.remove();
             }
         }
     })

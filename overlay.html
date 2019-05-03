@@ -15,19 +15,19 @@
     <div class="wp-popup__container wp-popup__overlay" id="overlay-app" v-cloak>
         <div class="wp-popup__notification wp-popup__notification--error" v-if="selectOverlayError && (step === 0 || step === 1)">
             Selected any overlay for your future advertising campain. Default will create the first overlay from the list
-            <div class="wp-popup__notification--close" @click="selectOverlayError = false"></div>
+            <div class="wp-popup__notification--close" @click="removeNotification($event)"></div>
         </div>
         <div class="wp-popup__notification wp-popup__notification--success" v-if="!overlayTextFilled && !overlayContentError && (step === 2)">
             click on overlay and change content (text and images)
-            <div class="wp-popup__notification--close" @click="selectOverlayError = false"></div>
+            <div class="wp-popup__notification--close" @click="removeNotification($event)"></div>
         </div>
         <div class="wp-popup__notification wp-popup__notification--error" v-if="overlayContentError && (step === 2)">
             You need change content on overlay
-            <div class="wp-popup__notification--close" @click="selectOverlayError = false"></div>
+            <div class="wp-popup__notification--close" @click="removeNotification($event)"></div>
         </div>
         <div class="wp-popup__notification wp-popup__notification--success" v-if="step === 4">
             Create custom rules for the new overlay
-            <div class="wp-popup__notification--close" @click="selectOverlayError = false"></div>
+            <div class="wp-popup__notification--close" @click="removeNotification($event)"></div>
         </div>
         <div class="wp-popup__top-panel">
             <h3 class="wp-popup__title">

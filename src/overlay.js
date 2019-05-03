@@ -196,6 +196,9 @@
             },
             done: function() {
 
+            },
+            removeNotification: function(event) {
+                event.target.parentNode.remove();
             }
         }
     });

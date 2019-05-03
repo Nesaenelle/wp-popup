@@ -15,6 +15,7 @@
     <div class="wp-popup__container wp-popup__my-overlays" id="my-overlays-app" v-cloak>
         <div class="wp-popup__notification wp-popup__notification--success" v-if="newOverlay">
             New overlay is created
+            <div class="wp-popup__notification--close" @click="removeNotification($event)"></div>
         </div>
         <h3 class="wp-popup__title">
             My Overlays
