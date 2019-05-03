@@ -15,15 +15,19 @@
     <div class="wp-popup__container wp-popup__overlay" id="overlay-app" v-cloak>
         <div class="wp-popup__notification wp-popup__notification--error" v-if="selectOverlayError && (step === 0 || step === 1)">
             Selected any overlay for your future advertising campain. Default will create the first overlay from the list
+            <div class="wp-popup__notification--close" @click="selectOverlayError = false"></div>
         </div>
         <div class="wp-popup__notification wp-popup__notification--success" v-if="!overlayTextFilled && !overlayContentError && (step === 2)">
             click on overlay and change content (text and images)
+            <div class="wp-popup__notification--close" @click="selectOverlayError = false"></div>
         </div>
         <div class="wp-popup__notification wp-popup__notification--error" v-if="overlayContentError && (step === 2)">
             You need change content on overlay
+            <div class="wp-popup__notification--close" @click="selectOverlayError = false"></div>
         </div>
         <div class="wp-popup__notification wp-popup__notification--success" v-if="step === 4">
             Create custom rules for the new overlay
+            <div class="wp-popup__notification--close" @click="selectOverlayError = false"></div>
         </div>
         <div class="wp-popup__top-panel">
             <h3 class="wp-popup__title">
@@ -139,7 +143,7 @@
                     </div>
                 </div>
                 <div class="wp-popup__overlay-settings_content--col">
-                    <label class="wp-popup__checkbox">
+                    <label class="wp-popup__checkbox wp-popup__checkbox--offset">
                         <input type="checkbox">
                         <div class="wp-popup__checkbox--icon"></div>
                         <div class="wp-popup__checkbox--text">Delay (seconds):</div>
@@ -149,7 +153,7 @@
                     </div>
                 </div>
                 <div class="wp-popup__overlay-settings_content--col">
-                    <label class="wp-popup__checkbox">
+                    <label class="wp-popup__checkbox wp-popup__checkbox--offset">
                         <input type="checkbox">
                         <div class="wp-popup__checkbox--icon"></div>
                         <div class="wp-popup__checkbox--text">Show after scroll(%):</div>
@@ -186,18 +190,18 @@
 
             <div class="wp-popup__overlay-settings_content">
                 <form class="wp-popup__smart-filter" @submit.prevent="addRule()">
-                    <div class="wp-popup__dropdown" v-dropdown>
+                    <div class="wp-popup__dropdown" v-dropdown="ruleModel.subject">
                          <div class="wp-popup__dropdown--label">Subject</div>
-                         <div class="wp-popup__dropdown__value">Category</div>
+                         <div class="wp-popup__dropdown__value">{{ruleModel.subject}}</div>
                          <div class="wp-popup__dropdown__list">
-                             <div class="wp-popup__dropdown__list--item" v-for="subj in subjects">{{subj}}</div>
+                             <div class="wp-popup__dropdown__list--item" v-for="subj in subjects" :data-id="subj">{{subj}}</div>
                          </div>
                     </div>
-                    <div class="wp-popup__dropdown" v-dropdown>
+                    <div class="wp-popup__dropdown" v-dropdown="ruleModel.condition">
                         <div class="wp-popup__dropdown--label">Condition</div>
-                        <div class="wp-popup__dropdown__value">does not contain</div>
+                        <div class="wp-popup__dropdown__value">{{ruleModel.condition}}</div>
                         <div class="wp-popup__dropdown__list">
-                            <div class="wp-popup__dropdown__list--item" v-for="condition in conditions">{{condition}}</div>
+                            <div class="wp-popup__dropdown__list--item" v-for="condition in conditions" :data-id="condition">{{condition}}</div>
                         </div>
                     </div>
                     <div class="wp-popup__smart-filter__content">

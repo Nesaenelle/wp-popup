@@ -694,6 +694,7 @@
             padding: 0 5px;
             font-family: Helvetica;
             font-size: 12px;
+            width: 132px;
         }
 
         &_section {
@@ -701,7 +702,7 @@
             font-size: 14px;
             font-weight: 600;
             color: #ffffff;
-            padding: 7px 7px;
+            padding: 9px;
             position: relative;
 
             i {
@@ -714,10 +715,25 @@
 
         &_content {
             background: #fff;
-            padding: 10px;
+            padding: 4px 19px 11px 19px;
+            &:last-child {
+                padding: 9px 9px 11px 11px;
+            }
 
             &+.wp-popup__overlay-settings_section {
                 margin-top: 10px;
+            }
+
+            .wp-popup__checkbox {
+                margin-right: 13px;
+                &--icon {
+                    margin-right: 8px;
+                }
+            }
+
+            .wp-popup__checkbox--offset {
+                width: 150px;
+                margin-right: 0px;
             }
 
             &--annotation {
@@ -737,13 +753,17 @@
     &__smart-filter {
         border-radius: 3px;
         background-color: #f9f9f9;
-        padding: 10px 50px 26px 50px;
-
+        padding: 10px 73px 31px;
+        display: flex;
+        align-items: flex-end;
+        .wp-popup__dropdown {
+            margin-right: 14px;
+        }
         &__content {
             display: inline-block;
             // flex-wrap: wrap;
             width: 350px;
-            margin-right: 10px;
+            margin-right: 15px;
 
             input {
                 width: 100%;

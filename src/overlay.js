@@ -35,14 +35,27 @@
     });
 
     Vue.directive('dropdown', {
-        inserted: function(el) {
+        inserted: function(el,b,vnode){
+            var model = b.expression.split('.');
             var valueEl = el.querySelector('.wp-popup__dropdown__value');
             var listEl = el.querySelector('.wp-popup__dropdown__list');
+            var listItems = el.querySelectorAll('.wp-popup__dropdown__list--item');
+            var initValue = listItems[0].getAttribute('data-id');
+     
+            vnode.context[model[0]][model[1]] = initValue;
 
             valueEl.addEventListener('click', function(e) {
                 e.stopPropagation();
                 listEl.classList.add('opened');
             }, false);
+
+            listItems.forEach(function(el) {
+               el.addEventListener('click', function(e) {
+                   var val = el.getAttribute('data-id');
+                   listEl.classList.remove('opened');
+                   vnode.context[model[0]][model[1]] = val;
+               }, false);    
+            });
 
             window.addEventListener('click', function(e) {
                 if (!listEl.contains(e.target)) {
@@ -55,19 +68,19 @@
     var app = new Vue({
         el: '#overlay-app',
         data: {
-            step: 4,
+            step: 0,
             overlays: OVERLAY_DATA,
             rules: RULES_DATA,
             subjects: SUBJECT_DATA,
             conditions: CONDITION_DATA,
             overlayName: '',
             overlayText: {
-                text1: 'example',
-                text2: 'example',
-                text3: 'example',
+                text1: '',
+                text2: '',
+                text3: '',
                 text4: ''
             },
-            ruleModel: {content: ''},
+            ruleModel: {content: '', condition: '', subject: '', amount: '-'},
             selectedOverlay: null,
             selectOverlayError: false,
             overlayNameError: false,
@@ -170,8 +183,13 @@
                 this.rules.splice(index, 1);
             },
             addRule: function() {
-                this.rules.push({condition: '', content: this.ruleModel.content});
-                this.ruleModel = {content: ''};
+                this.rules.push({
+                    title: 'Rule #' + (this.rules.length + 1), 
+                    condition: this.ruleModel.condition, 
+                    content: this.ruleModel.content, 
+                    subject: this.ruleModel.subject,
+                    amount: this.ruleModel.amount
+                });
             },
             clearAllRules: function() {
                 this.rules = [];

@@ -141,14 +141,26 @@
 
     &__notification {
         // position: absolute;
-        max-width: 873px;
+        max-width: 860px;
         width: 100%;
         top: 20px;
-        padding: 8px 12px;
+        padding: 10px;
         font-size: 14px;
         margin-top: -5px;
         margin-bottom: 30px;
         position: absolute;
+
+        &--close {
+            position: absolute;
+            right: 20px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background: #fff;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
 
         &--error {
             background: rgba(208, 2, 27, 0.32);
@@ -486,16 +498,17 @@
 
             .wp-popup__table_head--col,
             .wp-popup__table_body--col {
-                font-size: 13px;
+                font-size: 12px;
                 font-weight: 400;
-                height: 32px;
 
                 &:nth-child(1) {
                     width: 100px;
+                    padding-left: 18px;
+                    // justify-content: center;
                 }
 
                 &:nth-child(2) {
-                    width: 120px;
+                    width: 100px;
                 }
 
                 &:nth-child(3) {
@@ -503,26 +516,27 @@
                 }
 
                 &:nth-child(4) {
-                    width: 30%;
+                    width: 31%;
                 }
 
                 &:nth-child(5) {
-                    width: 30%;
+                    width: 32%;
                 }
 
                 &:nth-child(6) {
                     width: 80px;
-                    text-align: center;
+                    justify-content: center;
                     text-decoration: underline;
                     cursor: pointer;
-
-                    a {
-                        margin: auto;
-                    }
                 }
             }
 
+            .wp-popup__table_head--col {
+                height: 28px;
+            }
+
             .wp-popup__table_body--col {
+                height: 32px;
                 &:nth-child(5) {
                     font-style: italic;
                 }
@@ -542,6 +556,8 @@
                 font-size: 14px;
                 font-weight: 600;
                 color: #f9f9f9;
+                display: flex;
+                align-items: center;
             }
         }
 
