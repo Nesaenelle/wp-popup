@@ -35,31 +35,31 @@
     });
 
     Vue.directive('dropdown', {
-        inserted: function(el,b,vnode){
+        inserted: function(element,b,vnode){
             var model = b.expression.split('.');
-            var valueEl = el.querySelector('.wp-popup__dropdown__value');
-            var listEl = el.querySelector('.wp-popup__dropdown__list');
-            var listItems = el.querySelectorAll('.wp-popup__dropdown__list--item');
+            var valueEl = element.querySelector('.wp-popup__dropdown__value');
+            var listEl = element.querySelector('.wp-popup__dropdown__list');
+            var listItems = element.querySelectorAll('.wp-popup__dropdown__list--item');
             var initValue = listItems[0].getAttribute('data-id');
      
             vnode.context[model[0]][model[1]] = initValue;
 
             valueEl.addEventListener('click', function(e) {
                 e.stopPropagation();
-                listEl.classList.add('opened');
+                element.classList.add('opened');
             }, false);
 
-            listItems.forEach(function(el) {
-               el.addEventListener('click', function(e) {
-                   var val = el.getAttribute('data-id');
-                   listEl.classList.remove('opened');
+            listItems.forEach(function(elem) {
+               elem.addEventListener('click', function(e) {
+                   var val = elem.getAttribute('data-id');
+                   element.classList.remove('opened');
                    vnode.context[model[0]][model[1]] = val;
                }, false);    
             });
 
             window.addEventListener('click', function(e) {
                 if (!listEl.contains(e.target)) {
-                    listEl.classList.remove('opened');
+                    element.classList.remove('opened');
                 }
             }, false);
         }
