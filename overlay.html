@@ -134,30 +134,30 @@
             <div class="wp-popup__overlay-settings_section">Enable auto overlay</div>
             <div class="wp-popup__overlay-settings_content">
                 <div class="wp-popup__overlay-settings_content--col">
-                    <label class="wp-popup__checkbox">
-                        <input type="checkbox">
-                        <div class="wp-popup__checkbox--icon"></div>
-                        <div class="wp-popup__checkbox--text">Show now</div>
+                    <label class="wp-popup__radio">
+                        <input type="radio" name="enable_auto_overlay" checked>
+                        <div class="wp-popup__radio--icon"></div>
+                        <div class="wp-popup__radio--text">Show now</div>
                     </label>
                     <div class="wp-popup__overlay-settings_content--annotation">
                         Overlay is shown immediately after the page or post is loaded
                     </div>
                 </div>
                 <div class="wp-popup__overlay-settings_content--col">
-                    <label class="wp-popup__checkbox wp-popup__checkbox--offset">
-                        <input type="checkbox">
-                        <div class="wp-popup__checkbox--icon"></div>
-                        <div class="wp-popup__checkbox--text">Delay (seconds):</div>
+                    <label class="wp-popup__radio wp-popup__radio--offset">
+                        <input type="radio" name="enable_auto_overlay">
+                        <div class="wp-popup__radio--icon"></div>
+                        <div class="wp-popup__radio--text">Delay (seconds):</div>
                     </label>
                     <div class="wp-popup__number-input" v-number>
                         <input type="text" maxlength="5" init-value="1" max-value="100">
                     </div>
                 </div>
                 <div class="wp-popup__overlay-settings_content--col">
-                    <label class="wp-popup__checkbox wp-popup__checkbox--offset">
-                        <input type="checkbox">
-                        <div class="wp-popup__checkbox--icon"></div>
-                        <div class="wp-popup__checkbox--text">Show after scroll(%):</div>
+                    <label class="wp-popup__radio wp-popup__radio--offset">
+                        <input type="radio" name="enable_auto_overlay">
+                        <div class="wp-popup__radio--icon"></div>
+                        <div class="wp-popup__radio--text">Show after scroll(%):</div>
                     </label>
                     <div class="wp-popup__number-input" v-number>
                         <input type="text" maxlength="5" init-value="20" max-value="100" prefix="%">
