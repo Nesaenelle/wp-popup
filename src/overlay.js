@@ -73,7 +73,7 @@
             rules: RULES_DATA,
             subjects: SUBJECT_DATA,
             conditions: CONDITION_DATA,
-            overlayName: '',
+            overlayName: 'Overlay_date_time',
             overlayText: {
                 text1: '',
                 text2: '',
@@ -83,21 +83,25 @@
             ruleModel: {content: '', condition: '', subject: '', amount: '-'},
             selectedOverlay: null,
             selectOverlayError: false,
-            overlayNameError: false,
+            // overlayNameError: false,
             overlayContentError: false
         },
         computed: {
             overlayTextFilled: function() {
-                return this.overlayText.text1 && this.overlayText.text2 && this.overlayText.text3 && this.overlayText.text4;
+                return this.overlayText.text1 && (this.overlayText.text2 || this.overlayText.text3 || this.overlayText.text4);
             }
         },
         mounted: function() {
-            var vm = this;
-            window.addEventListener('click', function(e) {
-                if (tinymce.editors.length > 0 && !document.querySelector('.tox').contains(e.target)) {
-                    vm.removeAllEditors();
-                }
-            }, false);
+            // var vm = this;
+            // window.addEventListener('click', function(e) {
+            //     if (tinymce.editors.length > 0 ||
+            //         (document.querySelector('.tox') && !document.querySelector('.tox').contains(e.target)) 
+            //         // || 
+            //         // (document.querySelector('.tox-menu') && !document.querySelector('.tox-menu').contains(e.target))
+            //        ) {
+            //         vm.removeAllEditors();
+            //     }
+            // }, false);
         },
         methods: {
             selectOverlay: function(overlay) {
@@ -112,6 +116,10 @@
                     var tiny = tinymce.init({
                         target: this.$refs[ref],
                         menubar: false,
+                        plugins: "image, link",
+                        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+                        images_upload_url: 'postAcceptor.php',
+                        toolbar: " undo redo | code | forecolor | backcolor | sizeselect | bold italic | fontselect |  customInsertButton | fontsizeselect |  alignleft aligncenter alignright | removeformat | link | image ",
                         setup: function(ed) {
                             ed.on('change', function(e) {
                                 vm.overlayText[ref] = ed.getContent();
@@ -125,6 +133,14 @@
                             });
                             ed.on('blur', function(e) {
 
+                            });
+
+                           ed.ui.registry.addButton('customInsertButton', {
+                              text: 'Close',
+                              onAction: function (_) {
+                                // ed.insertContent('&nbsp;<strong>It\'s my button!</strong>&nbsp;');
+                                vm.removeAllEditors();
+                              }
                             });
                         }
                     });
@@ -145,9 +161,9 @@
                 }
                 if (this.step === 2) {
                     this.overlayText = {
-                        text1: 'example',
-                        text2: 'example',
-                        text3: 'example',
+                        text1: '',
+                        text2: '',
+                        text3: '',
                         text4: ''
                     };
                 }
@@ -155,13 +171,7 @@
             nextStep: function() {
                 if (this.step === 0 || this.step === 1) {
                     if (this.selectedOverlay) {
-                        if (this.overlayName) {
-                            this.step++;
-                            this.overlayNameError = false;
-                        } else {
-                            this.overlayNameError = true;
-                            this.$refs['overlayName'].focus();
-                        }
+                        this.step++;
                         this.selectOverlayError = false;
                     } else {
                         this.selectOverlayError = true;
@@ -196,6 +206,21 @@
             },
             done: function() {
 
+            },
+            onLoadImage: function(event) {
+                var vm = this;
+                var file    = event.target;
+                var reader  = new FileReader();
+
+                reader.onloadend = function () {
+                  vm.selectedOverlay.img = reader.result;
+                }
+
+                if (file) {
+                  reader.readAsDataURL(file.files[0]);
+                } else {
+                  vm.selectedOverlay.img = "";
+                }
             },
             removeNotification: function(event) {
                 event.target.parentNode.remove();

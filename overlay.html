@@ -58,7 +58,7 @@
         </div>
         <div class="wp-popup__overlay-name" v-if="step === 0 || step === 1">
             <div class="wp-popup__overlay-name--name">Overlay’s name</div>
-            <input type="text" placeholder="Overlay’s name" ref="overlayName" v-model="overlayName" :class="{'wp-popup__input-error': overlayNameError && !overlayName}">
+            <input type="text" placeholder="Overlay’s name" ref="overlayName" v-model="overlayName">
             <div class="wp-popup__overlay-name--info">create a name in 70 characters, by default the name will be created with the date and time</div>
         </div>
         <h3 class="wp-popup__subtitle">
@@ -95,6 +95,7 @@
                 <div class="wp-popup__overlay-edit__desktop--resolution">1200_600_desktop ver.</div>
                 <div class="wp-popup__overlay-edit__desktop--image">
                     <img :src="selectedOverlay.img" alt="">
+                    <input type="file" @change="onLoadImage($event)">
                     <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--1" @click.stop="changeText('text1')" :class="{'filled': overlayText.text1 || step === 5, 'inactive': step === 5}">
                         <input type="text" v-model="overlayText.text1" ref="text1">
                         <div class="wp-popup__overlay-edit__desktop_text--field" v-html="overlayText.text1"></div>
@@ -258,7 +259,7 @@
         </div> -->
         <div class="wp-popup__buttons">
             <button class="wp-popup__btn wp-popup__btn--back" @click="back()" v-if="step > 0">Back</button>
-            <button class="wp-popup__btn" @click="nextStep()" v-if="step === 0 || step === 1" :class="{'wp-popup__btn--grey': !selectedOverlay || !overlayName, 'wp-popup__btn--blue': selectedOverlay && overlayName}">
+            <button class="wp-popup__btn" @click="nextStep()" v-if="step === 0 || step === 1" :class="{'wp-popup__btn--grey': !selectedOverlay, 'wp-popup__btn--blue': selectedOverlay}">
                 Next step
             </button>
             <button class="wp-popup__btn" @click="nextStep()" v-if="step === 2 || step === 3" :class="{'wp-popup__btn--grey': !overlayTextFilled, 'wp-popup__btn--blue': overlayTextFilled}">
@@ -300,7 +301,7 @@
     var CONDITION_DATA = ["exact much", "contains", "does not contain"];
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=3qhc8drz13frhse8ioo41gn8d6eolr4rw964a180i5ext30r"></script>
     <script src="src/overlay.js"></script>
 </body>
 
