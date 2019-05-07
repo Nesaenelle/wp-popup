@@ -76,7 +76,7 @@
             <div class="wp-popup__overlays-list">
                 <div class="wp-popup__overlays-list__col" v-for="overlay in overlays">
                     <div class="wp-popup__overlays-list__item" v-for="item in overlay" @click="selectOverlay(item)" :class="{selected: item === selectedOverlay}">
-                        <div class="wp-popup__overlays-list__item--resolution">{{item.size}} #{{item.id}}</div>
+                        <div class="wp-popup__overlays-list__item--resolution">{{item.size}} #{{item.number}}</div>
                         <div class="wp-popup__overlays-list__item--image">
                             <img :src="item.preview" alt="">
                             <div class="wp-popup__overlays-list__item--selected" v-if="item === selectedOverlay">
@@ -92,10 +92,12 @@
         <div class="wp-popup__content wp-popup__overlay-edit" v-if="step === 2 || step === 3 || step === 5" 
         :class="{'wp-popup__content--error': overlayContentError}">
             <div class="wp-popup__overlay-edit__desktop">
-                <div class="wp-popup__overlay-edit__desktop--resolution">1200_600_desktop ver.</div>
-                <div class="wp-popup__overlay-edit__desktop--image">
+                <div class="wp-popup__overlay-edit__desktop--resolution">{{selectedOverlay.size}}_desktop ver.</div>
+                <div class="wp-popup__overlay-edit__desktop--image" :class="selectedOverlay.theme">
                     <img :src="selectedOverlay.img" alt="">
-                    <input type="file" @change="onLoadImage($event)">
+                    <label class="wp-popup__overlay-edit__desktop--upload">
+                        <input type="file" @change="onLoadImage($event)">
+                    </label>
                     <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--1" @click.stop="changeText('text1')" :class="{'filled': overlayText.text1 || step === 5, 'inactive': step === 5}">
                         <input type="text" v-model="overlayText.text1" ref="text1">
                         <div class="wp-popup__overlay-edit__desktop_text--field" v-html="overlayText.text1"></div>
@@ -112,12 +114,16 @@
                         <input type="text" v-model="overlayText.text4" ref="text4">
                         <div class="wp-popup__overlay-edit__desktop_text--field" v-html="overlayText.text4"></div>
                     </div>
+                    <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--5" @click.stop="changeText('text5')" :class="{'filled': overlayText.text5 || step === 5, 'inactive': step === 5}">
+                        <input type="text" v-model="overlayText.text5" ref="text5">
+                        <div class="wp-popup__overlay-edit__desktop_text--field" v-html="overlayText.text5"></div>
+                    </div>
                 </div>
             </div>
             <div class="wp-popup__overlay-edit__mobile">
-                <div class="wp-popup__overlay-edit__desktop--resolution">1200_600_mobile ver.</div>
-                <div class="wp-popup__overlay-edit__mobile--image">
-                    <img :src="selectedOverlay.img" alt="">
+                <div class="wp-popup__overlay-edit__desktop--resolution">{{selectedOverlay.size}}_mobile ver.</div>
+                <div class="wp-popup__overlay-edit__mobile--image" :class="selectedOverlay.theme">
+                    <img :src="selectedOverlay.mobImg" alt="">
                     <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--1 filled inactive">
                         <div class="wp-popup__overlay-edit__mobile_text--field" v-html="overlayText.text1"></div>
                     </div>
@@ -126,6 +132,12 @@
                     </div>
                     <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--3 filled inactive">
                         <div class="wp-popup__overlay-edit__mobile_text--field" v-html="overlayText.text3"></div>
+                    </div>
+                    <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--4 filled inactive">
+                        <div class="wp-popup__overlay-edit__mobile_text--field" v-html="overlayText.text4"></div>
+                    </div>
+                    <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--5 filled inactive">
+                        <div class="wp-popup__overlay-edit__mobile_text--field" v-html="overlayText.text5"></div>
                     </div>
                 </div>
             </div>
@@ -277,16 +289,16 @@
     <script>
     var OVERLAY_DATA = [
         [
-            { size: '1000*500', id: 1, preview: 'img/overlay-preview-1.jpg', img: 'img/overlay-1.jpg' }, 
-            { size: '1000*500', id: 2, preview: 'img/overlay-preview-2.jpg', img: 'img/overlay-2.jpg'}
+            { size: '1000*500', number: 1, theme: 'theme-1000-500-1', preview: 'img/overlay-preview-1.jpg', img: 'img/overlay-1.jpg', mobImg: 'img/overlay-1-mob.jpg' }, 
+            { size: '1000*500', number: 2, theme: 'theme-1000-500-2', preview: 'img/overlay-preview-2.jpg', img: 'img/overlay-2.jpg', mobImg: 'img/overlay-2-mob.jpg' }
         ],
         [
-            { size: '960*400', id: 1, preview: 'img/overlay-preview-3.jpg', img: 'img/overlay-3.jpg'}, 
-            { size: '960*400', id: 2, preview: 'img/overlay-preview-4.jpg', img: 'img/overlay-4.jpg'}
+            { size: '960*400', number: 1, theme: 'theme-960-400-1', preview: 'img/overlay-preview-3.jpg', img: 'img/overlay-3.jpg', mobImg: 'img/overlay-3-mob.jpg' }, 
+            { size: '960*400', number: 2, theme: 'theme-960-400-2',preview: 'img/overlay-preview-4.jpg', img: 'img/overlay-4.jpg', mobImg: 'img/overlay-4-mob.jpg' }
         ],
         [
-            { size: '1120*600', id: 1, preview: 'img/overlay-preview-5.jpg', img: 'img/overlay-5.jpg'}, 
-            { size: '1120*600', id: 2, preview: 'img/overlay-preview-6.jpg', img: 'img/overlay-6.jpg'}
+            { size: '1120*600', number: 1, theme: 'theme-1120-600-1', preview: 'img/overlay-preview-5.jpg', img: 'img/overlay-5.jpg', mobImg: 'img/overlay-5-mob.jpg' }, 
+            { size: '1120*600', number: 2, theme: 'theme-1120-600-2',preview: 'img/overlay-preview-6.jpg', img: 'img/overlay-6.jpg', mobImg: 'img/overlay-6-mob.jpg' }
         ],
     ];
 

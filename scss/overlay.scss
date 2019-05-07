@@ -1,3 +1,5 @@
+@import 'themes.scss';
+
 .wp-popup {
 
     &__overlay {
@@ -594,110 +596,13 @@
                     color: #fff;
                     justify-content: center;
                     align-items: center;
+                    text-align: center;
                     font-size: 14px;
                     letter-spacing: 0.5px;
+                    line-height: 1em;
                 }
 
-                &--1 {
-                    top: 40px;
-                    left: 10px;
-                    max-width: 45%;
-                    @media screen and (max-width: 960px) {
-                        top: 30px;
-                    }
 
-                    .wp-popup__overlay-edit__desktop_text--field,
-                    .wp-popup__overlay-edit__mobile_text--field {
-                        overflow: hidden;
-                        background: red;
-                        font-weight: 600;
-                        font-size: 16px;
-                        padding: 4px 20px;
-                        color: #fff;
-                        max-height: 80px;
-                        min-width: 150px;
-                        min-height: 30px;
-                        // max-width: 100%;
-                        p {
-                            margin: 0;
-                            font-size: 16px;
-                        }
-                    }
-                }
-
-                &--2 {
-                    top: 30px;
-                    right: 20px;
-                    width: 45%;
-                    height: 100px;
-                    padding: 4px 10px;
-                    @media screen and (max-width: 960px) {
-                        top: 20px;
-                        height: 70px;
-                    }
-
-                    .wp-popup__overlay-edit__desktop_text--field,
-                    .wp-popup__overlay-edit__mobile_text--field {
-                        font-weight: 600;
-                        font-size: 32px;
-                        line-height: 1.1em;
-                        overflow: hidden;
-
-                        p {
-                            margin: 0;
-                            font-size: 32px;
-                        }
-                    }
-                }
-
-                &--3 {
-                    top: 166px;
-                    right: 10px;
-                    width: 49%;
-                    background: #fff;
-                    height: 77px;
-                    padding: 6px 20px;
-                    box-shadow: 0 0 5px -3px #000;
-
-                     @media screen and (max-width: 960px) {
-                        top: 110px;
-                     }
-
-                    .wp-popup__overlay-edit__desktop_text--field,
-                    .wp-popup__overlay-edit__mobile_text--field {
-                        font-size: 14px;
-                        overflow: hidden;
-
-                        p {
-                            margin: 0;
-                            font-size: 14px;
-                        }
-                    }
-                }
-
-                &--4 {
-                    top: 250px;
-                    right: 10px;
-                    width: 240px;
-                    padding: 5px;
-                    height: 78px;
-                    padding: 2px 5px;
-
-                    @media screen and (max-width: 960px) {
-                        top: 205px;
-                    }
-
-                    .wp-popup__overlay-edit__desktop_text--field,
-                    .wp-popup__overlay-edit__mobile_text--field {
-                        font-size: 28px;
-                        overflow: hidden;
-
-                        p {
-                            margin: 0;
-                            font-size: 28px;
-                        }
-                    }
-                }
 
                 input {
                     display: none;
@@ -706,6 +611,10 @@
                 &--field {
                     height: 100%;
                     word-break: break-all;
+                    p {
+                        margin: 0;
+                        padding: 5px;
+                    }
                 }
 
             }
@@ -725,27 +634,26 @@
                     height: 300px;
                 }
 
-                &:after {
-                    content: '';
-                    position: absolute;
-                    top: 8px;
-                    left: 8px;
-                    width: calc(100% - 20px);
-                    height: calc(100% - 20px);
-                    border: 2px solid #585858;
-                    pointer-events: none;
-                }
+            }
 
-
-                input[type="file"] {
-                    // display: none;
-                    opacity: 0;
-                    width: 100%;
-                    height: 100%;
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                }
+            &--upload {
+               position: absolute;
+               left: 0px;
+               bottom: 0px;
+               background: url(../img/upload-button.svg);
+               background-size: cover;
+               width: 60px;
+               height: 60px;
+               cursor: pointer;
+               z-index: 1;
+               overflow: hidden;
+               input[type="file"] {
+                cursor: pointer;
+                opacity: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+               } 
             }
 
             .tox-tinymce {
@@ -776,64 +684,10 @@
                     height: 200px;
                   }
 
-                &:after {
-                    content: '';
-                    position: absolute;
-                    top: 4px;
-                    left: 4px;
-                    width: calc(100% - 10px);
-                    height: calc(100% - 10px);
-                    border: 1px solid #585858;
-                    pointer-events: none;
-                }
             }
 
             &_text {
 
-                // display: none;
-                &--1 {
-                    top: 14px;
-                    left: 5px;
-
-                    .wp-popup__overlay-edit__mobile_text--field {
-                        padding: 5px;
-                        font-size: 14px;
-                        @media screen and (max-width: 960px) {
-                           min-width: 100px;
-                           min-height: 20px;
-                           padding: 2px 4px;
-                        }
-                        p {
-                            margin: 0;
-                            font-size: 14px;
-                        }
-                    }
-                }
-
-                &--2 {
-                    top: 120px;
-                    width: 100%;
-                    right: auto;
-
-                    .wp-popup__overlay-edit__mobile_text--field {
-                        padding: 5px;
-                        line-height: 0.9em;
-                        font-size: 26px;
-                    }
-                }
-
-                &--3 {
-                    top: auto;
-                    bottom: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100px;
-
-                    .wp-popup__overlay-edit__mobile_text--field {
-                        font-size: 12px;
-                        text-align: center;
-                    }
-                }
             }
         }
     }

@@ -73,12 +73,13 @@
             rules: RULES_DATA,
             subjects: SUBJECT_DATA,
             conditions: CONDITION_DATA,
-            overlayName: 'Overlay_date_time',
+            overlayName: 'Overlay_' + (new Date()).toLocaleDateString() + '_' + (new Date()).toLocaleTimeString() ,
             overlayText: {
                 text1: '',
                 text2: '',
                 text3: '',
-                text4: ''
+                text4: '',
+                text5: ''
             },
             ruleModel: {content: '', condition: '', subject: '', amount: '-'},
             selectedOverlay: null,
@@ -88,7 +89,7 @@
         },
         computed: {
             overlayTextFilled: function() {
-                return this.overlayText.text1 && (this.overlayText.text2 || this.overlayText.text3 || this.overlayText.text4);
+                return this.overlayText.text1 && (this.overlayText.text2 || this.overlayText.text3 || this.overlayText.text4 || this.overlayText.text5);
             }
         },
         mounted: function() {
@@ -164,7 +165,8 @@
                         text1: '',
                         text2: '',
                         text3: '',
-                        text4: ''
+                        text4: '',
+                        text5: ''
                     };
                 }
             },
