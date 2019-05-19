@@ -66,7 +66,7 @@
                 <div class="wp-popup__content wp-popup__overlay-edit">
                     <div class="wp-popup__overlay-edit__desktop">
                         <div class="wp-popup__overlay-edit__desktop--resolution">1200_600_desktop ver.</div>
-                        <div class="wp-popup__overlay-edit__desktop--image">
+                        <div class="wp-popup__overlay-edit__desktop--image"  :class="modalData.theme">
                             <img :src="modalData.img" alt="">
                             <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--1 inactive filled">
                                 <div class="wp-popup__overlay-edit__desktop_text--field" v-html="modalData.text1"></div>
@@ -80,12 +80,15 @@
                             <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--4 inactive filled">
                                 <div class="wp-popup__overlay-edit__desktop_text--field" v-html="modalData.text4"></div>
                             </div>
+                            <div class="wp-popup__overlay-edit__desktop_text wp-popup__overlay-edit__desktop_text--5 inactive filled">
+                                <div class="wp-popup__overlay-edit__desktop_text--field" v-html="modalData.text5"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="wp-popup__overlay-edit__mobile">
                         <div class="wp-popup__overlay-edit__desktop--resolution">1200_600_mobile ver.</div>
-                        <div class="wp-popup__overlay-edit__mobile--image">
-                            <img :src="modalData.img" alt="">
+                        <div class="wp-popup__overlay-edit__mobile--image"  :class="modalData.theme">
+                            <img :src="modalData.mobImg" alt="">
                             <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--1 filled inactive">
                                 <div class="wp-popup__overlay-edit__mobile_text--field" v-html="modalData.text1"></div>
                             </div>
@@ -95,6 +98,12 @@
                             <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--3 filled inactive">
                                 <div class="wp-popup__overlay-edit__mobile_text--field" v-html="modalData.text3"></div>
                             </div>
+                            <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--4 filled inactive">
+                                <div class="wp-popup__overlay-edit__mobile_text--field" v-html="modalData.text4"></div>
+                            </div>
+                            <div class="wp-popup__overlay-edit__mobile_text wp-popup__overlay-edit__mobile_text--5 filled inactive">
+                                <div class="wp-popup__overlay-edit__mobile_text--field" v-html="modalData.text5"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -103,9 +112,9 @@
     </div>
     <script>
     var OVERLAY_DATA = [
-        { title: 'Overlay_test_one_1223', img: 'img/medicine.jpg', text1: 'example', text2: 'example', text3: 'example', text4: 'example' }, 
-        { title: 'Overlay_test_one_1224', img: 'img/medicine.jpg', text1: 'example', text2: 'example', text3: 'example', text4: 'example'  }, 
-        { title: 'Overlay_test_one_1225', img: 'img/medicine.jpg', text1: 'example', text2: 'example', text3: 'example', text4: 'example' }
+        { title: 'Overlay_test_one_1223', theme: 'theme-1000-500-1', img: 'img/overlay-1.jpg', mobImg: 'img/overlay-1-mob.jpg', text1: '<p>example</p>', text2: '<p>example</p>', text3: '<p>example</p>', text4: '<p>example</p>' }, 
+        { title: 'Overlay_test_one_1224', theme: 'theme-1000-500-2', img: 'img/overlay-2.jpg', mobImg: 'img/overlay-2-mob.jpg', text1: '<p>example</p>', text2: '<p>example</p>', text3: '<p>example</p>', text4: '<p>example</p>'  }, 
+        { title: 'Overlay_test_one_1225', theme: 'theme-960-400-1', img: 'img/overlay-3.jpg', mobImg: 'img/overlay-3-mob.jpg', text1: '<p>example</p>', text2: '<p>example</p>', text3: '<p>example</p>', text4: '<p>example</p>' }
     ];
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>

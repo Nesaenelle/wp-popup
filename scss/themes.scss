@@ -9,8 +9,7 @@
             //     top: 30px;
             // }
 
-            .wp-popup__overlay-edit__desktop_text--field,
-            .wp-popup__overlay-edit__mobile_text--field {
+            .wp-popup__overlay-edit__desktop_text--field {
                 overflow: hidden;
                 background: #fff;
                 font-weight: 600;
@@ -40,8 +39,7 @@
             //     height: 70px;
             // }
 
-            .wp-popup__overlay-edit__desktop_text--field,
-            .wp-popup__overlay-edit__mobile_text--field {
+            .wp-popup__overlay-edit__desktop_text--field {
                 font-weight: 600;
                 font-size: 32px;
                 line-height: 1.1em;
@@ -67,8 +65,7 @@
                 top: 135px;
             }
 
-            .wp-popup__overlay-edit__desktop_text--field,
-            .wp-popup__overlay-edit__mobile_text--field {
+            .wp-popup__overlay-edit__desktop_text--field {
                 font-size: 14px;
                 overflow: hidden;
                 color: #fff;
@@ -80,26 +77,28 @@
         }
 
         &--4 {
-            top: 296px;
+            // top: 290px;
+            bottom: 10px;
             right: 10px;
             width: 240px;
             padding: 5px;
-            height: 40px;
-            padding: 2px 10px;
-            background: #fff;
+            // height: 40px;
+            // padding: 2px 10px;
+       
 
             @media screen and (max-width: 960px) {
                 top: 245px;
             }
 
-            .wp-popup__overlay-edit__desktop_text--field,
-            .wp-popup__overlay-edit__mobile_text--field {
+            .wp-popup__overlay-edit__desktop_text--field {
+                background: #fff;
                 font-size: 20px;
                 overflow: hidden;
                 color: #000;
                 line-height: 1em;
 
                 p {
+                    padding: 8px;
                     font-size: 28px;
                 }
             }
@@ -117,8 +116,7 @@
                 top: 205px;
             }
 
-            .wp-popup__overlay-edit__desktop_text--field,
-            .wp-popup__overlay-edit__mobile_text--field {
+            .wp-popup__overlay-edit__desktop_text--field {
                 font-size: 16px;
                 overflow: hidden;
                 line-height: 1.4em;
@@ -313,15 +311,15 @@
         }
 
         &--4 {
-            top: 296px;
+            top: 285px;
             right: 0px;
             left: 0;
             margin: auto;
             width: 240px;
             padding: 5px;
-            height: 40px;
-            padding: 2px 5px;
-            background: #fff;
+            // height: 40px;
+            // padding: 2px 5px;
+      
 
             @media screen and (max-width: 960px) {
                 top: 245px;
@@ -334,7 +332,8 @@
                 color: #000;
 
                 p {
-
+                    padding: 8px;
+                    background: #fff;
                     font-size: 28px;
                     line-height: 1em;
                 }
@@ -453,6 +452,7 @@
                 color: #000;
                 max-height: 100px;
                 min-width: 100px;
+                min-height: 40px;
                 // min-height: 60px;
 
                 // max-width: 100%;
@@ -516,9 +516,9 @@
         &--4 {
             top: 280px;
             right: 80px;
-            width: 240px;
+            width: 280px;
             padding: 5px;
-            height: 40px;
+            // height: 40px;
             padding: 2px 5px;
 
             @media screen and (max-width: 960px) {
@@ -609,7 +609,7 @@
             bottom: 10px;
             left: 0;
             width: 75%;
-            height: 30px;
+            // height: 30px;
             right: 0;
             margin: auto;
 
@@ -658,7 +658,7 @@
                 color: #000;
                 max-height: 35px;
                 min-width: 100px;
-                min-height: 35px;
+                // min-height: 35px;
 
                 // max-width: 100%;
                 p {
@@ -720,16 +720,13 @@
         }
 
         &--4 {
-            top: 290px;
+            top: 280px;
             right: 15px;
-            width: 240px;
+            width: 280px;
             padding: 5px;
-            height: 40px;
+            // height: 40px;
             padding: 2px 10px;
 
-            // background: #19c2e8;
-            // border-radius: 5px;
-            // box-shadow: 0 0 5px -3px #000;
             @media screen and (max-width: 960px) {
                 top: 235px;
             }
@@ -741,7 +738,10 @@
                 line-height: 1em;
 
                 p {
-
+                    background: #19c2e8;
+                    color: #fff;
+                    border-radius: 5px;
+                    padding: 8px;
                     font-size: 28px;
                 }
             }
@@ -825,7 +825,7 @@
             bottom: 15px;
             left: 0;
             width: 75%;
-            height: 30px;
+            // height: 30px;
             right: 0;
             margin: auto;
 
@@ -893,7 +893,7 @@
                 color: #fff;
                 max-height: 80px;
                 min-width: 150px;
-                min-height: 30px;
+                // min-height: 30px;
 
                 // max-width: 100%;
                 p {
@@ -956,9 +956,9 @@
             top: 270px;
             right: 30px;
             width: 240px;
-            padding: 5px;
-            height: 40px;
-            padding: 2px 10px;
+            // padding: 5px;
+            // height: 40px;
+            // padding: 2px 10px;
             background: #f7941d;
             border-radius: 5px;
 
@@ -973,7 +973,7 @@
                 line-height: 1.2em;
 
                 p {
-                    padding: 0;
+                    padding: 8px;
                     font-size: 28px;
                 }
             }
@@ -1111,15 +1111,15 @@
                 background: red;
                 font-weight: 600;
                 font-size: 16px;
-                padding: 4px 20px;
+           
                 color: #fff;
                 max-height: 80px;
                 min-width: 150px;
-                min-height: 30px;
+                // min-height: 30px;
 
                 // max-width: 100%;
                 p {
-
+                    padding: 4px 20px;
                     font-size: 16px;
                 }
             }
@@ -1179,7 +1179,7 @@
             right: 20px;
             width: 282px;
             padding: 5px;
-            height: 35px;
+            // height: 35px;
             padding: 0px 10px;
 
             @media screen and (max-width: 960px) {
@@ -1206,11 +1206,13 @@
             left: 20px;
             width: 190px;
             padding: 5px;
-            height: 35px;
+            // height: 35px;
             padding: 0px 10px;
             // background: #f7941d;
             // border-radius: 5px;
-
+            &:after { 
+                min-height: 35px;
+            }
             @media screen and (max-width: 960px) {
                 top: 250px;
             }
