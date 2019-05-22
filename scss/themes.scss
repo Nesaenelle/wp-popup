@@ -319,7 +319,7 @@
         &--3 {
             top: 110px;
             right: 10px;
-            width: 78%;
+            width: 76%;
             // background: #fff;
             height: 60px;
             padding: 6px 20px;
@@ -327,6 +327,11 @@
             // @media screen and (max-width: 960px) {
             //     top: 110px;
             // }
+
+            @media screen and (max-width: 960px) {
+                width: 70%;
+            }
+
 
             .wp-popup__overlay-edit__desktop_text--field {
                 font-size: 14px;
@@ -482,6 +487,9 @@
                     background: #fff;
                 }
             }
+        }
+        &--5 {
+            display: none;
         }
     }
 }
@@ -686,6 +694,10 @@
                     }
                 }
             }
+        }
+
+        &--5 {
+            display: none;
         }
     }
 }
@@ -903,6 +915,10 @@
                     }
                 }
             }
+        }
+
+        &--5 {
+            display: none;
         }
     }
 }
@@ -1135,6 +1151,9 @@
                 }
 
             }
+        }
+        &--5 {
+            display: none;
         }
     }
 }
