@@ -118,9 +118,9 @@
                         target: this.$refs[ref],
                         menubar: false,
                         plugins: "image, link",
-                        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+                        // fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
                         images_upload_url: 'postAcceptor.php',
-                        toolbar: " undo redo | code | forecolor | backcolor | sizeselect | bold italic | fontselect |  customInsertButton | fontsizeselect |  alignleft aligncenter alignright | removeformat | link | image ",
+                        toolbar: " undo redo | code | forecolor | backcolor | sizeselect | bold italic | fontselect |  customInsertButton | alignleft aligncenter alignright | removeformat | link | image ",
                         setup: function(ed) {
                             ed.on('change', function(e) {
                                 vm.overlayText[ref] = ed.getContent();
