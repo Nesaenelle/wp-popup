@@ -145,6 +145,12 @@
                             });
                         }
                     });
+
+                    var id= tinymce.activeEditor.id;
+                    var editor = tinyMCE.get(id);
+                    var node = editor.selection.getNode();
+                    var fontSize = editor.dom.getStyle(node, 'font-size', true);
+                    console.log(fontSize);
                 }
 
             },
@@ -216,12 +222,14 @@
 
                 reader.onloadend = function () {
                   vm.selectedOverlay.img = reader.result;
+                  vm.selectedOverlay.mobImg = reader.result;
                 }
 
                 if (file) {
                   reader.readAsDataURL(file.files[0]);
                 } else {
                   vm.selectedOverlay.img = "";
+                  vm.selectedOverlay.mobImg = "";
                 }
             },
             removeNotification: function(event) {
