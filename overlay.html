@@ -289,16 +289,16 @@
     <script>
     var OVERLAY_DATA = [
         [
-            { size: '1000*500', number: 1, theme: 'theme-1000-500-1', preview: 'img/overlay-preview-1.jpg', img: 'img/overlay-1.jpg', mobImg: 'img/overlay-1-mob.jpg' }, 
-            { size: '1000*500', number: 2, theme: 'theme-1000-500-2', preview: 'img/overlay-preview-2.jpg', img: 'img/overlay-2.jpg', mobImg: 'img/overlay-2-mob.jpg' }
+            { id: 1, size: '1000*500', number: 1, theme: 'theme-1000-500-1', preview: 'img/overlay-preview-1.jpg', img: 'img/overlay-1.jpg', mobImg: 'img/overlay-1-mob.jpg' }, 
+            { id: 2, size: '1000*500', number: 2, theme: 'theme-1000-500-2', preview: 'img/overlay-preview-2.jpg', img: 'img/overlay-2.jpg', mobImg: 'img/overlay-2-mob.jpg' }
         ],
         [
-            { size: '960*400', number: 1, theme: 'theme-960-400-1', preview: 'img/overlay-preview-3.jpg', img: 'img/overlay-3.jpg', mobImg: 'img/overlay-3-mob.jpg' }, 
-            { size: '960*400', number: 2, theme: 'theme-960-400-2',preview: 'img/overlay-preview-4.jpg', img: 'img/overlay-4.jpg', mobImg: 'img/overlay-4-mob.jpg' }
+            { id: 3, size: '960*400', number: 1, theme: 'theme-960-400-1', preview: 'img/overlay-preview-3.jpg', img: 'img/overlay-3.jpg', mobImg: 'img/overlay-3-mob.jpg' }, 
+            { id: 4, size: '960*400', number: 2, theme: 'theme-960-400-2',preview: 'img/overlay-preview-4.jpg', img: 'img/overlay-4.jpg', mobImg: 'img/overlay-4-mob.jpg' }
         ],
         [
-            { size: '1120*600', number: 1, theme: 'theme-1120-600-1', preview: 'img/overlay-preview-5.jpg', img: 'img/overlay-5.jpg', mobImg: 'img/overlay-5-mob.jpg' }, 
-            { size: '1120*600', number: 2, theme: 'theme-1120-600-2',preview: 'img/overlay-preview-6.jpg', img: 'img/overlay-6.jpg', mobImg: 'img/overlay-6-mob.jpg' }
+            { id: 5, size: '1120*600', number: 1, theme: 'theme-1120-600-1', preview: 'img/overlay-preview-5.jpg', img: 'img/overlay-5.jpg', mobImg: 'img/overlay-5-mob.jpg' }, 
+            { id: 6, size: '1120*600', number: 2, theme: 'theme-1120-600-2',preview: 'img/overlay-preview-6.jpg', img: 'img/overlay-6.jpg', mobImg: 'img/overlay-6-mob.jpg' }
         ],
     ];
 
@@ -312,6 +312,10 @@
     var SUBJECT_DATA = ["Page", "Category", "Tag"];
     var CONDITION_DATA = ["exact much", "contains", "does not contain"];
     </script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=3qhc8drz13frhse8ioo41gn8d6eolr4rw964a180i5ext30r"></script>
     <script src="src/overlay.js"></script>
